@@ -1,3 +1,29 @@
-
-
 <!-- index modals go here -->
+
+<!-- REVIEW THIS -->
+
+<div id="main-container" class="container">
+    <div class="jumbotron text-center header-wrap" align="center">
+        {{!-- <h1 class="display-4">ChronoLogic</h1> --}}
+        <img src="" alt="logo" class="mb-4" style="width:210px;">
+        <p class="lead">Welcome to <strong>ChronoLogic</strong> where you can compare your time.</p>
+        <hr class="my-4">
+        <p class="lead">XXXXXXXXXXX</p>
+        <div>
+
+            <!-- /////MOVE ALL THIS TO NAVBAR DROP DOWN -->
+            {{#if isloggedin}}
+            <button type="submit" id="search-item" class="btn">My Timelines</button>
+            <a href="/logout"> <button type="btn" class="btn">Logout</button></a>
+            {{else}}
+            <button type="submit" id="sign-in-modal" class="btn">Sign In!</button>
+            <button type="submit" id="sign-up" class="btn">Sign Up!</button>
+            {{/if}}
+
+        </div>
+    </div>
+
+
+</div>
+
+{{> Modal/signin-block}}

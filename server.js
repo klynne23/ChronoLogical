@@ -1,6 +1,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var session = require("express-session");
+var exphbs = require("express-handlebars");
 var passport = require("./config/passport");
 
 var PORT = process.env.PORT || 8080;
@@ -14,7 +15,12 @@ app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true 
 app.use(passport.initialize());
 app.use(passport.session());
 
-require("./routes/html-routes.js")(app);
+// Set Handlebars as the default templating engine.
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+
+//NOT SURE WE NEED THIS B/C HANDLEBARS
+// require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
 
 db.sequelize.sync().then(function() {

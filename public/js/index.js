@@ -2,8 +2,8 @@ $(document).ready(function () {
 
     //variables to hold user information from the form
     var loginForm = $("form.login");
-    var usernameInput = $("input#username-input");
-    var passwordInput = $("input#password-input");
+    var usernameloginInput = $("input#usernamelogin-input");
+    var passwordloginInput = $("input#passwordlogin-input");
 
     //LOGIN FORM ON SUBMIT
     loginForm.on("submit", function (event) {
@@ -11,8 +11,8 @@ $(document).ready(function () {
 
         //creates the userData object to be passed into the loginUser function (which is hoisted from below)
         var userData = {
-            username: usernameInput.val().trim(),
-            password: passwordInput.val().trim()
+            username: usernameloginInput.val().trim(),
+            password: passwordloginInput.val().trim()
         };
         console.log(userData);
 
@@ -23,8 +23,8 @@ $(document).ready(function () {
 
         //if there's info in both fields, then it runs the loginUser function from below and clears the form
         loginUser(userData.username, userData.password);
-        usernameInput.val("");
-        passwordInput.val("");
+        usernameloginInput.val("");
+        passwordloginInput.val("");
         
 
     }); //end of LOGIN FORM ON SUBMIT
@@ -93,15 +93,33 @@ $(document).ready(function () {
 
 $(document).on("click", ".publicTimelineOption", function(){
     var selected = $(this).data("name");
-    console.log(selected);
-    $("#option1").empty();
-    $("#option1").text(selected);
+    var option2 = $("#option2").text();
+    if (selected == option2) {
+        alert("Please select a different timeline")
+        $("#option1").empty();
+    }
+    else {
+        $("#option1").empty();
+        $("#option1").text(selected);
+    }
+
 }); /* end on click */
 
 $(document).on("click", ".userTimelineOption", function(){
     var selected = $(this).data("name");
-    $("#option2").empty();
-    $("#option2").text(selected);
+    var option1 = $("#option1").text();
+
+    if (option1==""){
+        alert("Please select your first timeline");
+    }
+    else if (selected==option1)  {
+        alert("Please select a different timeline");
+        $("#option2").empty();
+    }
+    else {
+        $("#option2").empty();
+        $("#option2").text(selected);
+    }
 });
 
 

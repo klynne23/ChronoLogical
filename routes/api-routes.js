@@ -36,7 +36,7 @@ module.exports = function (app) {
 
     //I think this allows the application to put a customized welcome on the page somewhere - like "Hi User Name!"
     app.get("/api/user_data", function (req, res) {
-        //if there's NO user info entered, then it'll retun the json of the whole object to the user_data api
+        //if there's NO user info entered, then it'll return the json of the whole object to the user_data api
         if (!req.user) {
             res.json({});
         } else {

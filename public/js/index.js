@@ -2,8 +2,8 @@ $(document).ready(function () {
 
     //variables to hold user information from the form
     var loginForm = $("form.login");
-    var usernameInput = $("input#username-input");
-    var passwordInput = $("input#password-input");
+    var usernameloginInput = $("input#usernamelogin-input");
+    var passwordloginInput = $("input#passwordlogin-input");
 
     //LOGIN FORM ON SUBMIT
     loginForm.on("submit", function (event) {
@@ -11,33 +11,33 @@ $(document).ready(function () {
 
         //creates the userData object to be passed into the loginUser function (which is hoisted from below)
         var userData = {
-            username: usernameInput.val().trim(),
-            password: passwordInput.val().trim()
+            usernamelogin: usernameloginInput.val().trim(),
+            passwordlogin: passwordloginInput.val().trim()
         };
         console.log(userData);
 
         //checks to see if there is info entered in both fields in the form -> if not it returns nothing
-        if (!userData.username || !userData.password) {
+        if (!userData.usernamelogin || !userData.passwordlogin) {
             return;
         }
 
         //if there's info in both fields, then it runs the loginUser function from below and clears the form
-        loginUser(userData.username, userData.password);
-        usernameInput.val("");
-        passwordInput.val("");
+        loginUser(userData.usernamelogin, userData.passwordlogin);
+        usernameloginInput.val("");
+        passwordloginInput.val("");
         
 
     }); //end of LOGIN FORM ON SUBMIT
 
-    function loginUser(username, password) {
+    function loginUser(usernamelogin, passwordlogin) {
         //ajax post request to send info to the server - api-routes will have the SQL comparison to the table/user model
         $.post("/api/login", {
             //the two variables from the object
-            username: username,
-            password: password
+            usernamelogin: usernamelogin,
+            passwordlogin: passwordlogin
         }).then(function (data) {
             window.location.replace(data);
-            console.log(username + password);
+            console.log(usernamelogin + passwordlogin);
         }).catch(function (err) {
             console.log(err);
         });

@@ -2,14 +2,14 @@
 
 <!-- REVIEW THIS -->
 
-<div id="main-container" class="container">
-    <div class="jumbotron text-center header-wrap" align="center">
+{{!-- <div id="main-container" class="container"> --}}
+    {{!-- <div class="jumbotron text-center header-wrap" align="center"> --}}
         {{!-- <h1 class="display-4">ChronoLogic</h1> --}}
-        <img src="" alt="logo" class="mb-4" style="width:210px;">
-        <p class="lead">Welcome to <strong>ChronoLogic</strong> where you can compare your time.</p>
-        <hr class="my-4">
-        <p class="lead">XXXXXXXXXXX</p>
-        <div>
+        {{!-- <img src="" alt="logo" class="mb-4" style="width:210px;"> --}}
+        {{!-- <p class="lead">Welcome to <strong>ChronoLogic</strong> where you can compare your time.</p> --}}
+        {{!-- <hr class="my-4"> --}}
+        {{!-- <p class="lead">XXXXXXXXXXX</p> --}}
+        {{!-- <div> --}}
 
             <!-- /////MOVE ALL THIS TO NAVBAR DROP DOWN -->
             {{#if isloggedin}}
@@ -33,11 +33,11 @@
             <form class="login">
                 <div class="form-group">
                     <label for="exampleInputUsername1">Username</label>
-                    <input type="username" class="form-control" id="username-input" placeholder="Username">
+                    <input type="usernamelogin" class="form-control" id="usernamelogin-input" placeholder="Username">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="password-input" placeholder="Password">
+                    <input type="passwordlogin" class="form-control" id="passwordlogin-input" placeholder="Password">
                 </div>
                 <button type="submit" class="btn btn-default">Login</button>
             </form>

@@ -1,5 +1,5 @@
 var bcrypt = require("bcrypt-nodejs");
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   var User = sequelize.define("User", {
     //unique email for signup
     email: {
@@ -25,13 +25,21 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-  User.prototype.validPassword = function(password) {
+  User.prototype.validPassword = function (password) {
     return bcrypt.compareSync(password, this.password);
   };
 
   //encrypts password so you see little dots when you type in your pword. Hook does it before it is created
-  User.hook("beforeCreate", function(user) {
+  User.hook("beforeCreate", function (user) {
     user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
   });
+
+  // Adds a hasMany association to Timelines
+  User.associate = function (models) {
+    User.hasMany(models.Timeline, {
+      onDelete: "CASCADE"
+    });
+  };
+
   return User;
 };

@@ -120,7 +120,7 @@ p.userTimelineOption {
 #divider {
     margin-top: 0px;
     border: 0;
-    height: 1px;
+    height: 2px;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 }
 
@@ -129,3 +129,30 @@ p.userTimelineOption {
 /* ----------------- */
 
 
+#createTimelineDiv {
+    border: 1px solid blue;
+}
+
+#createTimelineDiv h4 {
+    margin-top: 1%;
+    margin-bottom: 0px;
+    /* text-align: center; */
+}
+
+#createHR {
+    margin-top: 0px;
+    border: 2px solid black;
+    margin-bottom: 1%;
+    /* height: 2px; */
+    /* background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0)); */
+}
+
+/* -------------------- */
+/* CREATE TIMELINE FORM */
+/* -------------------- */
+
+form {
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 2%;
+}

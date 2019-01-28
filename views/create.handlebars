@@ -1,6 +1,6 @@
 <div class="navbar">
     <h2>Welcome</h2>
-    <p>Login/Sign Up</p>
+    <a class="btn btn-primary" href="/index" role="button">Login | Sign Up</a>
 </div>
 
 <div class="jumbotron text-center header-wrap" align="center">
@@ -12,8 +12,42 @@
 
 <div class="container">
     <div class="row row1">
-        <div class="col-md-3">
-            <div id="userCreatedTimelines">
+        <div class="col-md-9" id="createTimelineDiv">
+            <div>
+                <h4>Create a Timeline</h4>
+                <hr id="createHR">
+                <form>
+                    <div class="form-group">
+                        <label for="eventTitle">Event Title</label>
+                        <input class="form-control" id="eventTitle" aria-describedby="eventTitle">
+                    </div>
+                    <div class="form-group">
+                        <label for="descriptionArea">Event Description</label>
+                        <textarea class="form-control" id="descriptionArea" rows="2"></textarea>
+                    </div>
+                
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col">
+                                <label for="startDate">Start Date</label>
+                                <input class="form-control" id="startDate" placeholder="DD-MM-YYYY">
+                            </div>
+                            <div class="col">
+                                <label for="endDate">End Date (optional) </label>
+                                <input class="form-control" id="endDate" placeholder="DD-MM-YYYY">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Event</button>
+
+
+                </form>
+
+            </div>
+        </div>{{!-- end col-md --}}
+        <div class="col-md-3" id="userCreatedTimelines">
+            <div>
 
                 <h4>Your Timelines</h4>
                 <hr id="divider">
@@ -22,30 +56,6 @@
 
             </div>
         </div> {{!-- end col-md --}}
-        <div class="col-md-9">
-            <div id="createTimelineDiv">
-                <h4>Create a Timeline</h4>
-                <div class="row">
-                    <div class="col-md-6">
-                        <span id="event">
-                            <p>Event: </p>
-                        </span>
-                        <span id="description">
-                            <p>Description: </p>
-                        </span>
-                    </div>
-                    <div class="col-md-6">
-                        <span id="startDate">
-                            <p>Start Date: </p>
-                        </span>
-                        <span id="endDate">
-                            <p>End Date: </p>
-                        </span>
-                    </div>
-
-                </div> {{!-- end row --}}
-            </div>
-        </div>{{!-- end col-md --}}
     </div>{{!-- end row --}}
 </div> {{!-- end container --}}
 

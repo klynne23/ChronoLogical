@@ -12,9 +12,9 @@
 
 <div class="container">
     <div class="row row1">
-        <div class="col-md-9" id="createTimelineDiv">
+        <div class="col-md-5" id="createTimelineDiv">
             <div>
-                <h4>Create a Timeline</h4>
+                <h4>Add new Event</h4>
                 <hr id="createHR">
                 <form>
                     <div class="form-group">
@@ -46,7 +46,42 @@
 
             </div>
         </div>{{!-- end col-md --}}
-        <div class="col-md-3" id="userCreatedTimelines">
+        <div class="col-md-5" id="editTimelineDiv">
+            <div>
+                <h4>Edit an Event</h4>
+                <hr id="createHR">
+                <form>
+                    <div class="form-group">
+                        <label for="eventTitle">Event Title</label>
+                        <input class="form-control" id="eventTitle" aria-describedby="eventTitle">
+                    </div>
+                    <div class="form-group">
+                        <label for="descriptionArea">Event Description</label>
+                        <textarea class="form-control" id="descriptionArea" rows="2"></textarea>
+                    </div>
+                
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col">
+                                <label for="startDate">Start Date</label>
+                                <input class="form-control" id="startDate" placeholder="DD-MM-YYYY">
+                            </div>
+                            <div class="col">
+                                <label for="endDate">End Date (optional) </label>
+                                <input class="form-control" id="endDate" placeholder="DD-MM-YYYY">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+
+
+                </form>
+
+            </div>
+
+        </div>
+        <div class="col-md-2" id="userCreatedTimelines">
             <div>
 
                 <h4>Your Timelines</h4>

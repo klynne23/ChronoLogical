@@ -156,3 +156,17 @@ form {
     margin-right: 2%;
     margin-bottom: 2%;
 }
+
+/* ------------------ */
+/* EDIT TIMELINE FORM */
+/* ------------------ */
+
+#editTimelineDiv {
+    border: 1px solid red;
+}
+
+#editTimelineDiv h4 {
+    margin-top: 1%;
+    margin-bottom: 0px;
+    /* text-align: center; */
+}

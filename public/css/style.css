@@ -110,6 +110,8 @@ p.userTimelineOption {
 #userCreatedTimelines {
     border: 1px solid blue;
     text-align: center;
+    padding-right: 0px;
+    padding-left: 0px;
 }
 
 #userCreatedTimelines h4 {

@@ -3,5 +3,6 @@ module.exports = function(req, res, next) {
     return next();
   }
 
-  return res.redirect("/");
+  // this route will redirect to the route that will display our signup page
+  return res.redirect("/main");
 };

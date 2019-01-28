@@ -34,6 +34,11 @@ module.exports = function (sequelize, DataTypes) {
     user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
   });
 
+  // User.hook("beforeCreate", function (user) {
+  //   user.passwordlogin = bcrypt.hashSync(user.passwordlogin, bcrypt.genSaltSync(10), null);
+  // });
+
+
   // Adds a hasMany association to Timelines
   User.associate = function (models) {
     User.hasMany(models.Timeline, {

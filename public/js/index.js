@@ -11,33 +11,33 @@ $(document).ready(function () {
 
         //creates the userData object to be passed into the loginUser function (which is hoisted from below)
         var userData = {
-            usernamelogin: usernameloginInput.val().trim(),
-            passwordlogin: passwordloginInput.val().trim()
+            username: usernameloginInput.val().trim(),
+            password: passwordloginInput.val().trim()
         };
         console.log(userData);
 
         //checks to see if there is info entered in both fields in the form -> if not it returns nothing
-        if (!userData.usernamelogin || !userData.passwordlogin) {
+        if (!userData.username || !userData.password) {
             return;
         }
 
         //if there's info in both fields, then it runs the loginUser function from below and clears the form
-        loginUser(userData.usernamelogin, userData.passwordlogin);
+        loginUser(userData.username, userData.password);
         usernameloginInput.val("");
         passwordloginInput.val("");
         
 
     }); //end of LOGIN FORM ON SUBMIT
 
-    function loginUser(usernamelogin, passwordlogin) {
+    function loginUser(username, password) {
         //ajax post request to send info to the server - api-routes will have the SQL comparison to the table/user model
         $.post("/api/login", {
             //the two variables from the object
-            usernamelogin: usernamelogin,
-            passwordlogin: passwordlogin
+            username: username,
+            password: password
         }).then(function (data) {
             window.location.replace(data);
-            console.log(usernamelogin + passwordlogin);
+            console.log(username + password);
         }).catch(function (err) {
             console.log(err);
         });

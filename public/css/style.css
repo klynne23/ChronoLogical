@@ -1,14 +1,36 @@
-/*************/
+/*************************************/
+/*                                   */
+/* MAIN CSS FOR ALL HANDLEBARS PAGES */
+/*                                   */
+/*************************************/
+
+
+/* ------- */
+/* NAVBAR */
+/* ------- */
+
+.navbar h2, .navbar p{
+    margin-bottom: 0px;
+}
+
+/* --------- */
 /* JUMBOTRON */
-/*************/
+/* --------- */
 
 .jumbotron h1 {
     font-size: 7em;
 }
 
-/***************************/
+/*******************************/
+/*                             */
+/* CSS FOR MAINPAGE.HANDLEBARS */
+/*                             */
+/*******************************/
+
+
+/* ----------------------- */
 /* PUBLIC & USER TIMELINES */
-/***************************/
+/* ----------------------- */
 
 /* PUBLIC TIMELINES */
 
@@ -47,9 +69,9 @@ p.userTimelineOption {
 }
 
 
-/********************/
+/* ---------------- */
 /* TIMELINE OPTIONS */
-/********************/
+/* ---------------- */
 
 .selectedTimelines{
     margin-top: 2%;
@@ -61,12 +83,49 @@ p.userTimelineOption {
     margin-top: 4%;
 }
 
-/*********************/
+/* ----------------- */
 /* RENDERED TIMELINE */
-/*********************/
+/* ----------------- */
 
 #timeline {
     border: 2px solid red;
 }
+
+
+/*****************************/
+/*                           */
+/* CSS FOR CREATE.HANDLEBARS */
+/*                           */
+/*****************************/
+
+
+/* --------------- */
+/* USERS TIMELINES */
+/* --------------- */
+
+.row1 {
+    margin-bottom: 2%;
+}
+
+#userCreatedTimelines {
+    border: 1px solid blue;
+    text-align: center;
+}
+
+#userCreatedTimelines h4 {
+    margin-top: 2%;
+    margin-bottom: 0px;
+}
+
+#divider {
+    margin-top: 0px;
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+/* ----------------- */
+/* CREATE A TIMELINE */
+/* ----------------- */
 
 

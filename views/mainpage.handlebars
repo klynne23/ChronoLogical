@@ -1,39 +1,59 @@
 <div class="jumbotron text-center header-wrap" align="center">
-    <h1><strong>ChronoLogical</strong></h1>
+    <h1><strong>《 ChronoLogical 》</strong></h1>
 
     <p>Compare Public and Personal Timelines</p>
 </div> {{!-- end jumbotron --}}
+
+
 
 <div class="container">
 
     <div class="row">
         <div class="col-md-1"></div>
-        <div class="col-md-4">
+        <div class="col-md-5">
+
             <div id="publicTimelines">
                 <h1>Public Timelines</h1>
-                <ul>
-                    <li>History of Wars</li>
-                    <li>Scientific Breakthroughs</li>
-                    <li>Barbie</li>
-                </ul>
+                <p class="publicTimelineOption" data-name="History of Wars">History of Wars</p>
+                <p class="publicTimelineOption" data-name="Scientific Breakthroughs">Scientific BreakThroughs</p>
+                <p class="publicTimelineOption" data-name="Barbie">Barbie</p>
+
             </div> {{!-- end publicTimelines --}}
-        </div>
-        <div class="col-md-2"></div>
-        <div class="col-md-4">
+        </div> {{!-- end col-md-4 --}}
+
+        {{!-- <div class="col-md-2"></div> --}}
+        <div class="col-md-5">
             <div id="userTimelines">
                 <h1>User Timelines</h1>
-                <ul>
-                    <li>Timeline 1</li>
-                    <li>Timeline 2</li>
-                </ul>
+                <p class="userTimelineOption" data-name="Grandfathers Moments">Grandfathers Moments</p>
+                <p class="userTimelineOption" data-name="Another Timeline">Another Timeline</p>
+
             </div> {{!-- end userTimelines --}}
         </div>
         <div class="col-md-1"></div>
 
     </div> {{!-- end row --}}
-    
-    <div class="row">
-
-    </div> {{!-- end row --}}
 
 </div> {{!-- end container --}}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 selectedTimelines">
+            <span>Chosen Timeline 1:</span>
+            <span id="option1">Selected Timeline</span>
+            {{!-- <p id="option1">Selected Timeline #1</p> --}}
+        </div>
+        <div class="col-md-4 selectedTimelines">
+            <span>Chosen Timeline 2:</span>
+            <span id="option2">Selected Timeline</span>
+
+            {{!-- <p id="option2">Selected Timeline #2</p> --}}
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+
+</div> {{!-- end container --}}
+
+<div class="col-md-12" id="timeline">
+    Timeline will render here
+</div> {{!-- end container/timeline1 --}}

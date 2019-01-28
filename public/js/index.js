@@ -91,7 +91,18 @@ $(document).ready(function () {
 //Remainder of data for the application - discuss whether we want to do this here or somewhere else
 
 
+$(document).on("click", ".publicTimelineOption", function(){
+    var selected = $(this).data("name");
+    console.log(selected);
+    $("#option1").empty();
+    $("#option1").text(selected);
+}); /* end on click */
 
+$(document).on("click", ".userTimelineOption", function(){
+    var selected = $(this).data("name");
+    $("#option2").empty();
+    $("#option2").text(selected);
+});
 
 
 

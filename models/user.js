@@ -30,7 +30,7 @@ module.exports = function (sequelize, DataTypes) {
   };
 
   //encrypts password so you see little dots when you type in your pword. Hook does it before it is created
-  User.hook("beforeCreate", function (user) {
+  User.addHook("beforeCreate", function (user) {
     user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
   });
 

@@ -23,8 +23,8 @@ app.set("view engine", "handlebars");
 require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
 
-// Including "{force: true}" while working on the database
-db.sequelize.sync({ force: true }).then(function() {
+// Run "{force: true}" to update database structure
+db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
     console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
   });

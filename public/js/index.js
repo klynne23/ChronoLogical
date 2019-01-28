@@ -93,15 +93,33 @@ $(document).ready(function () {
 
 $(document).on("click", ".publicTimelineOption", function(){
     var selected = $(this).data("name");
-    console.log(selected);
-    $("#option1").empty();
-    $("#option1").text(selected);
+    var option2 = $("#option2").text();
+    if (selected == option2) {
+        alert("Please select a different timeline")
+        $("#option1").empty();
+    }
+    else {
+        $("#option1").empty();
+        $("#option1").text(selected);
+    }
+
 }); /* end on click */
 
 $(document).on("click", ".userTimelineOption", function(){
     var selected = $(this).data("name");
-    $("#option2").empty();
-    $("#option2").text(selected);
+    var option1 = $("#option1").text();
+
+    if (option1==""){
+        alert("Please select your first timeline");
+    }
+    else if (selected==option1)  {
+        alert("Please select a different timeline");
+        $("#option2").empty();
+    }
+    else {
+        $("#option2").empty();
+        $("#option2").text(selected);
+    }
 });
 
 

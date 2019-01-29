@@ -57,7 +57,10 @@ module.exports = function (app) {
 
     // POST route for creating a new TIMELINE
     app.post("/api/timeline", function (req, res) {
-        db.Timeline.create(req.body).then(function (results) {
+        db.Timeline.create({
+           title: req.body.title,
+           cat_name: req.body.cat_name
+        }).then(function (results) {
             res.json(results);
         });
     });
@@ -119,7 +122,13 @@ module.exports = function (app) {
 
     // POST route for creating an EVENT
     app.post("/api/timeline/event", function (req, res) {
-        db.Occurrence.create(req.body).then(function (results) {
+        db.Occurrence.create({
+            event_name: req.body.event_name,
+            event_description: req.body.event_description,
+            start_date: req.body.start_date,
+            end_date: req.body.end_date
+        
+        }).then(function (results) {
             res.json(results);
         });
     });

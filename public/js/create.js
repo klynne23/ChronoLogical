@@ -9,6 +9,8 @@ var startInput = $("#startDate");
 var endInput = $("#endDate");
 
 
+//-----TIMELINE FORM--------
+
 //Submitting new timeline
 $(".timelineForm").on("submit", function(event){
     event.preventDefault();
@@ -19,7 +21,8 @@ $(".timelineForm").on("submit", function(event){
 
     console.log(newTimeline)
 
-    $.post("/api/timeline", {
+    $.ajax("/api/timeline", {
+        type: "POST",
         data: newTimeline
     }).then(
         function(){
@@ -29,29 +32,29 @@ $(".timelineForm").on("submit", function(event){
     );
 });
 
-//a function to get authors from the api
-// function getTimelines(){
-//     $.get("/api/timeline", renderTimeline);
-// }
+//-----EVENT FORM---------
+//Submitting a new event
+$("#eventForm").on("submit", function(event){
+    event.preventDefault();
+    var newEvent = {
+        event_name: eventTitleInput.val().trim(),
+        event_description: descriptionInput.val().trim(),
+        start_date: startInput.val().trim(),
+        end_date: endInput.val().trim()
+    };
+    console.log(newEvent);
+    $.ajax ("/api/timeline/event", {
+        type: "POST",
+        data: newEvent
+    }).then(
+        function(){
+            console.log(newEvent);
+            location.reload();
+        }
+    );
+});
 
-//function to create timeline options in dropdown
-// function createTimelineRow (timeline){
-//     var listOption = $("<option>");
-//     listOption.text(timelines.title);
-//     return listOption
-// }
 
-//function to show the list of timelines in the drop down
-// function renderTimeline(data){
-//     var rowsToAdd = [];
-//     for (var i = 0; i<data.length; i++){
-//         rowsToAdd.push(createTimelineRow(data[i]));
-//     }
-//     console.log(rowsToAdd);
-//     timeTitleInput.append(rowsToAdd);
-// }
-
-// getTimelines();
 
 
 

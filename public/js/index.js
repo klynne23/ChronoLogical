@@ -77,13 +77,15 @@ $(document).ready(function () {
         }).then(function(data){
             window.location.replace(data);
             console.log(email + username + password);
-        }).catch(handleLoginErr);
+        }).catch(function(err){
+            console.log(err);
+        });
     }
 
-    function handleLoginErr(err){
-        $("#alert .msg").text(err.responseJSON);
-        $("#alert").fadeIn(500);
-    }
+    // function handleLoginErr(err){
+    //     $("#alert .msg").text(err.responseJSON);
+    //     $("#alert").fadeIn(500);
+    // }
 
 
 

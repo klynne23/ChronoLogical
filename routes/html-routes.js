@@ -13,7 +13,7 @@ module.exports = function (app) {
 
     //this is related to authentication - but it's basically the same route as index. I need to do more research to figure out how to just slightly change the page after login
     app.get("/index", isAuthenticated, function(req, res) {
-    //    res.render("index");
+    //    res.render("create");
       });
 
     app.get("/main", function(req, res){

@@ -24,7 +24,9 @@ require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
 
 // Run "{force: true}" to update database structure
-db.sequelize.sync().then(function() {
+db.sequelize.sync({
+  // force:true
+}).then(function() {
   app.listen(PORT, function() {
     console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
   });

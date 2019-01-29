@@ -1,5 +1,6 @@
 //requires the models and saves in a db variable
 var db = require("../models");
+const Op = db.Sequelize.Op;
 
 //variable holding the passport Strategy to authenticate the passwords
 var passport = require("../config/passport");
@@ -48,8 +49,112 @@ module.exports = function (app) {
 
     });
 
-    /////REST OF THE APPLICATION?????
+    // REST OF THE APPLICATION
 
+    /////////////////////
+    ///// TIMELINES /////
+    ///////////////////// 
 
+    // POST route for creating a new TIMELINE
+    app.post("/api/timeline", function (req, res) {
+        db.Timeline.create(req.body).then(function (results) {
+            res.json(results);
+        });
+    });
 
-}
+    // GET route for retrieving all EVENTS associated with a SINGLE TIMELINE
+    app.get("/api/timeline/:id", function (req, res) {
+        db.Occurrence.findAll({
+            where: {
+                TimelineId: req.params.id
+            }
+        }).then(function (results) {
+            res.json(results);
+        });
+    });
+
+    // GET route for retrieving all EVENTS associated with a TWO TIMELINES
+    app.get("/api/combined", function (req, res) {
+        let timeline1 = 1; // This will have to come from req.body
+        let timeline2 = 2; // This will have to come from req.body
+        db.Occurrence.findAll({
+            where: {
+                [Op.or]: [{TimelineId: timeline1}, {TimelineId: timeline2}]
+            },
+            order: [
+                ['end_date', 'DESC']
+            ]
+        }).then(function (results) {
+            res.json(results);
+        });
+    });
+
+    // PUT route for updating a TIMELINE
+    app.put("/api/timeline", function (req, res) {
+        db.Timeline.update(
+            req.body, {
+                where: {
+                    id: req.body.id
+                }
+            }).then(function (results) {
+            res.json(results);
+        });
+    });
+
+    // DELETE route for deleting a single TIMELINE
+    app.delete("/api/timeline/:id", function (req, res) {
+        db.Timeline.destroy({
+            where: {
+                id: req.params.id
+            }
+        }).then(function (results) {
+            res.json(results);
+        });
+    });
+
+    /////////////////////
+    ///// EVENTS ////////
+    ///////////////////// 
+
+    // POST route for creating an EVENT
+    app.post("/api/timeline/event", function (req, res) {
+        db.Occurrence.create(req.body).then(function (results) {
+            res.json(results);
+        });
+    });
+
+    // GET route for retrieving SINGLE EVENT
+    app.get("/api/timeline/event/:id", function (req, res) {
+        db.Occurrence.findAll({
+            where: {
+                id: req.params.id
+            }
+        }).then(function (results) {
+            res.json(results);
+        });
+    });
+
+    // PUT route for updating an EVENT
+    app.put("/api/timeline/event", function (req, res) {
+        db.Occurrence.update(
+            req.body, {
+                where: {
+                    id: req.body.id
+                }
+            }).then(function (results) {
+            res.json(results);
+        });
+    });
+
+    // DELETE route for deleting a single EVENT
+    app.delete("/api/timeline/event/:id", function (req, res) {
+        db.Occurrence.destroy({
+            where: {
+                id: req.params.id
+            }
+        }).then(function (results) {
+            res.json(results);
+        });
+    });
+
+}; // End of module.exports

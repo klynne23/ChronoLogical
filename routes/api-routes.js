@@ -73,10 +73,11 @@ module.exports = function (app) {
         });
     });
 
-    // GET route for retrieving all EVENTS associated with a TWO TIMELINES
-    app.get("/api/combined", function (req, res) {
-        let timeline1 = 1; // This will have to come from req.body
-        let timeline2 = 2; // This will have to come from req.body
+    // POST route for retrieving all EVENTS associated with a TWO TIMELINES
+    app.post("/api/combined", function (req, res) {
+        let timeline1 = req.body.timeline1;
+        let timeline2 = req.body.timeline2;
+
         db.Occurrence.findAll({
             where: {
                 [Op.or]: [{TimelineId: timeline1}, {TimelineId: timeline2}]

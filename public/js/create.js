@@ -16,6 +16,9 @@ $(".timelineForm").on("submit", function(event){
         title: $("#timelineTitle").val().trim(),
         cat_name: $("#timelineCategory").val().trim()
     };
+
+    console.log(newTimeline)
+
     $.post("/api/timeline", {
         data: newTimeline
     }).then(

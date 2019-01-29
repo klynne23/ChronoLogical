@@ -30,28 +30,28 @@ $(".timelineForm").on("submit", function(event){
 });
 
 //a function to get authors from the api
-function getTimelines(){
-    $.get("/api/timeline", renderTimeline);
-}
+// function getTimelines(){
+//     $.get("/api/timeline", renderTimeline);
+// }
 
 //function to create timeline options in dropdown
-function createTimelineRow (timeline){
-    var listOption = $("<option>");
-    listOption.text(timelines.title);
-    return listOption
-}
+// function createTimelineRow (timeline){
+//     var listOption = $("<option>");
+//     listOption.text(timelines.title);
+//     return listOption
+// }
 
 //function to show the list of timelines in the drop down
-function renderTimeline(data){
-    var rowsToAdd = [];
-    for (var i = 0; i<data.length; i++){
-        rowsToAdd.push(createTimelineRow(data[i]));
-    }
-    console.log(rowsToAdd);
-    timeTitleInput.append(rowsToAdd);
-}
+// function renderTimeline(data){
+//     var rowsToAdd = [];
+//     for (var i = 0; i<data.length; i++){
+//         rowsToAdd.push(createTimelineRow(data[i]));
+//     }
+//     console.log(rowsToAdd);
+//     timeTitleInput.append(rowsToAdd);
+// }
 
-getTimelines();
+// getTimelines();
 
 
 

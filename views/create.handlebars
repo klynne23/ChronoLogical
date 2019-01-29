@@ -23,16 +23,22 @@
                     </div>
                     <div class="form-group">
                         <label for="timelineCategory">Timeline Category</label>
-                        <textarea class="form-control" id="timelineCategory" rows="2" name="cat_name"></textarea>
+                        <select class="form-control" id="timelineCategory">
+                            <option>History</option>
+                            <option>Personal</option>
+                            <option>Science</option>
+                            <option>Pop Culture</option>
+                            <option>Other</option>
+                        </select>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Create Timeline</button>
-
 
                 </form>
 
             </div>
         </div>{{!-- end col-md --}}
+
         <div class="col-md-6" id="editTimelineDiv">
             <div>
                 <h4>Edit an Event</h4>
@@ -65,24 +71,22 @@
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Save</button>
-
-
                 </form>
-
             </div>
+        </div>
+
+
+    <div class="col-md-3" id="userCreatedTimelines">
+        <div>
+
+            <h4>Your Timelines</h4>
+            <hr id="divider">
+            <p>Barbie<button>View</button><button>Edit</button><button>Delete</button></p>
+            <p>Family History<button>View</button><button>Edit</button><button>Delete</button></p>
 
         </div>
-        <div class="col-md-3" id="userCreatedTimelines">
-            <div>
-
-                <h4>Your Timelines</h4>
-                <hr id="divider">
-                <p>Barbie<button>View</button><button>Edit</button><button>Delete</button></p>
-                <p>Family History<button>View</button><button>Edit</button><button>Delete</button></p>
-
-            </div>
-        </div> {{!-- end col-md --}}
-    </div>{{!-- end row --}}
+    </div> {{!-- end col-md --}}
+</div>{{!-- end row --}}
 </div> {{!-- end container --}}
 
 

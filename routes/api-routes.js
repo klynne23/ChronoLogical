@@ -72,7 +72,8 @@ module.exports = function (app) {
                 TimelineId: req.params.id
             }
         }).then(function (results) {
-            res.json(results);
+            // res.json(results);
+            res.render("timeline", {data:results});
         });
     });
 
@@ -168,3 +169,11 @@ module.exports = function (app) {
     });
 
 }; // End of module.exports
+
+ // handlebars home page route for filling the PUblic Timelines
+ app.get("/testmainpage", function (req, res){
+    db.Timeline.findAll({}).then(function (results){
+        res.render("testmainpage", {publicTimelines:results});
+        // res.json(results);
+    })
+}); 

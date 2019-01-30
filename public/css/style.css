@@ -105,7 +105,7 @@ span.userTimelineOption:hover {
 }
 
 .goButton {
-    /* margin-top:22.8px; */
+    margin-top:22.8px;
 }
 
 
@@ -200,7 +200,9 @@ form {
 }
 
 
-/* timeline css */
+/* ------------- */
+/*  TIMELINE CSS */
+/* ------------- */
 h1.header {
     text-align: center;
     font-size: 3em;
@@ -215,17 +217,23 @@ div.timeline__item.timeline__item--left {
 
 }
 
-div.timeline__item.timeline__item--left div.timeline__content {
+div.timeline__content {
+    background-image: linear-gradient(to right, white, lightgreen, white);
+}
+
+div.timeline__content.timeline1 {
     background-image: linear-gradient(to right, white, pink, white);
 }
+
+div.timeline__content.timeline2 {
+    background-image: linear-gradient(to left, white, lightblue, white);
+}
+
 
 div.timeline__item.timeline__item--right {
     padding-right: 5%;
 }
 
-div.timeline__item.timeline__item--right div.timeline__content {
-    background-image: linear-gradient(to left, white, lightblue, white);
-}
 hr {
     border: 0;
     height: 1px;

@@ -117,6 +117,7 @@ $(document).ready(function () {
     $(document).on("click", ".userTimelineOption", function () {
         var selected = $(this).data("name");
         var id = $(this).data("id")
+        
         $("#option2").attr("data-id", id);
 
         var option1 = $("#option1").text();
@@ -132,36 +133,55 @@ $(document).ready(function () {
 
     // when clicking on go, will grab the values of selected timelines, will do
     // and api call to retrieve both timelines
-    $(document).on("click", ".goButton", function () {
+    $(document).on("click", ".goButton", function (event) {
+        // event.preventDefault();
         var timeline1 = $("#option1").text();
         var timeline2 = $("#option2").text();
         var timelineOneId = $("#option1").data("id");
         var timelineTwoId = $("#option2").data("id");
 
-
         if (timeline1 == "" && timeline2 == "") {
             alert("please select at least one timeline");
         }
         else if (timeline1 == "") {
-            console.log("no timeline 1 selected");
+
+            var timelineTwoId = $("#option2").data("id");
+
+            console.log("timeline id: "+ timelineTwoId);
             $.get("/api/timeline/" + timelineTwoId)
                 .then(function (res) {
-                    //html response
-                    console.log(res);
+                    // json response object
+                    // console.log(res);
+                    renderTimeline(res);
+                    $("#option2").empty();
+                    timelineTwoId="";
                 });
         }
         else if (timeline2 == "") {
-            console.log("no timeline 2 selected");
+
+            var timelineOneId = $("#option1").data("id");
+
+            console.log("timeline id: "+ timelineOneId);
+
             $.get("/api/timeline/" + timelineOneId)
                 .then(function (res) {
-                    //html response
-                    console.log(res);
+
+                    //json response object
+                    // console.log(res);
+
+                    renderTimeline(res);
+                    $("#option1").empty();
+                    timelineOneId="";
+
                 });
         }
 
         else {
-            console.log("your 2 selected timelines are "+timeline1+" & "+timeline2);
-            console.log("The Ids are "+timelineOneId+" & "+timelineTwoId);
+            var timelineOneId = $("#option1").data("id");
+            var timelineTwoId = $("#option2").data("id");
+    
+            console.log("your 2 selected timelines are " + timeline1 + " & " + timeline2);
+            console.log("The Ids are " + timelineOneId + " & " + timelineTwoId);
 
             timelines = {
                 timeline1: timelineOneId,
@@ -170,26 +190,150 @@ $(document).ready(function () {
 
             $.post("/api/combined", timelines)
                 .then(function (res) {
-                    console.log(res);
+                    $("#option1").empty();
+                    $("#option2").empty();
 
+                    console.log(res);
+                    // render timeline with a function
+                    renderTwoTimelines(res, timelineOneId, timelineTwoId);
                 });
 
         }
 
+        // FUNCTION TO RENDER A SINGLE TIMELINE
+        var renderTimeline = function (data) {
+
+            // empty the div
+            $(".timeline__items").empty();
+
+            // for each item in data response
+            data.forEach(element => {
+                var timelineItem = $("<div>");
+                timelineItem.addClass("timeline__item");
+
+                var timelineContent = $("<div>");
+                timelineContent.addClass("timeline__content");
 
 
+                var h2 = $("<h2>")
+                h2.text(element.event_name);
+                timelineContent.append(h2);
+
+                var hr = $("<hr>");
+                timelineContent.append(hr);
+
+                var start = $("<span>");
+                var strongStart = $("<strong>");
+                var startText = element.start_date;
+                var startDate = startText.split("T");
+                strongStart.text( "Start: ");
+                start.text(startDate[0]+ " || ");
+                start.prepend(strongStart);
+                timelineContent.append(start);
+
+                var end = $("<span>");
+                var strongEnd = $("<strong>");
+                var endText = element.end_date;
+                var endDate = endText.split("T");
+                strongEnd.text("End: ");
+                end.text(endDate[0]);
+                end.prepend(strongEnd);
+                timelineContent.append(end);
+
+                var hr = $("<hr>");
+                timelineContent.append(hr);
+
+                var desc = $("<p>");
+                desc.text(element.event_description);
+                timelineContent.append(desc);
+
+                // append the timeline content div to the timeline item
+                timelineItem.append(timelineContent);
+
+                $(".timeline__items").append(timelineItem);
+
+
+            }); // end forEach
+
+            // timeline script to initiate timeline
+            $('.timeline').timeline({
+                verticalStartPosition: 'right',
+                verticalTrigger: '150px',
+            });
+
+        };
+
+        // FUNCTION TO RENDER 2 TIMELINES
+        var renderTwoTimelines = function (data, t1, t2) {
+            console.log("You want to render 2 timelines")
+
+            data.forEach(element => {
+                var timelineItem = $("<div>");
+                timelineItem.addClass("timeline__item");
+                
+                var timelineContent = $("<div>");
+                timelineContent.addClass("timeline__content");
+                
+                if (element.TimelineId == t1){
+                    console.log(element.TimelineId);
+                    timelineContent.addClass("timeline1");
+                }
+                else {
+                    console.log(element.TimelineId);
+                    timelineContent.addClass("timeline2");
+                }
+
+                var h2 = $("<h2>")
+                h2.text(element.event_name);
+                timelineContent.append(h2);
+
+                var hr = $("<hr>");
+                timelineContent.append(hr);
+
+                var start = $("<span>");
+                var strongStart = $("<strong>");
+                var startText = element.start_date;
+                var startDate = startText.split("T");
+                strongStart.text( "Start: ");
+                start.text(startDate[0]+ " || ");
+                start.prepend(strongStart);
+                timelineContent.append(start);
+
+                var end = $("<span>");
+                var strongEnd = $("<strong>");
+                var endText = element.end_date;
+                var endDate = endText.split("T");
+                strongEnd.text("End: ");
+                end.text(endDate[0]);
+                end.prepend(strongEnd);
+                timelineContent.append(end);
+
+                var hr = $("<hr>");
+                timelineContent.append(hr);
+
+                var desc = $("<p>");
+                desc.text(element.event_description);
+                timelineContent.append(desc);
+
+                // append the timeline content div to the timeline item
+                timelineItem.append(timelineContent);
+
+                $(".timeline__items").append(timelineItem);
+
+                
+            });
+
+            // timeline script to initiate timeline
+            $('.timeline').timeline({
+                verticalStartPosition: 'right',
+                verticalTrigger: '150px',
+            });
+        };
 
 
 
     }); /* end on click */
 
 
-    // timeline script to initiate timelines
-    $('.timeline').timeline({
-        verticalStartPosition: 'right',
-        verticalTrigger: '150px',
-    });
 
-
-
-});
+}); // end document on ready

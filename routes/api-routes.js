@@ -62,10 +62,10 @@ module.exports = function (app) {
             CategoryId: req.body.CategoryId,
             UserId: req.body.UserId
         }).then(function (results) {
-            console.log(results);
             res.json(results);
         });
     });
+
 
     // GET route for retrieving all TIMELINES associated with a SINGLE USER
     app.get("/api/timeline/user/:UserId", function (req, res) {
@@ -86,10 +86,7 @@ module.exports = function (app) {
                 TimelineId: req.params.id
             }
         }).then(function (results) {
-            // res.json(results);
-            res.render("timeline", {
-                data: results
-            });
+            res.json(results);
         });
     });
 
@@ -193,11 +190,12 @@ module.exports = function (app) {
     // handlebars home page route for filling the PUblic Timelines
     app.get("/", function (req, res) {
         db.Timeline.findAll({}).then(function (results) {
-            res.render("mainpage", {
-                publicTimelines: results
-            });
-            // res.json(results);
+            res.render("mainpage", {publicTimelines: results});
+            
         })
     });
 
+
+   
+    
 }; // End of module.exports

@@ -20,9 +20,9 @@ module.exports = function (app) {
         res.render("index"); 
     })
 
-    app.get("/", function(req, res){
-        res.render("mainpage");
-    });
+    // app.get("/", function(req, res){
+    //     res.render("mainpage");
+    // });
 
     app.get("/create", function(req, res){
         res.render("create");

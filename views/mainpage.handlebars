@@ -1,15 +1,22 @@
 <div class="navbar">
-    <h2>Welcome</h2>
+    <h2>#A-Team</h2>
     <a class="btn btn-primary" href="/index" role="button">Login | Sign Up</a>
-</div>
+</div> {{!-- end navbar --}}
 
 <div class="jumbotron text-center header-wrap" align="center">
-    <h1><strong>《 ChronoLogical 》</strong></h1>
+    <h1><strong> <span id="arrow1">《</span> ChronoLogical <span id="arrow2"> 》</span></strong></h1>
 
-    <p>Compare Public and Personal Timelines</p>
+    <p><span id="subtitle">Compare Public and Personal Timelines</span></p>
 </div> {{!-- end jumbotron --}}
 
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h6 id="stepOne">1. Select 1 or 2 timelines to display!</h6>
+        </div>
+    </div>
+</div> {{!-- end container --}}
 
 <div class="container">
 
@@ -24,17 +31,13 @@
                 {{> public-timelines}}
                 {{/each}}
 
-                {{!-- <p class="publicTimelineOption" data-name="History of Wars">History of Wars</p>
-                <p class="publicTimelineOption" data-name="Scientific Breakthroughs">Scientific BreakThroughs</p>
-                <p class="publicTimelineOption" data-name="Barbie">Barbie</p> --}}
-
             </div> {{!-- end publicTimelines --}}
         </div> {{!-- end col-md-4 --}}
 
         {{!-- <div class="col-md-2"></div> --}}
         <div class="col-md-5">
             <div id="userTimelines">
-                <h1>User Timelines</h1>
+                <h1>Public Timelines</h1>
                 {{#each publicTimelines}}
                 {{> user-timelines}}
                 {{/each}}
@@ -45,6 +48,15 @@
     </div> {{!-- end row --}}
 
 </div> {{!-- end container --}}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h6 id="stepTwo">2. Press Go!</h6>
+        </div>
+    </div>
+</div> {{!-- end container --}}
+
 
 <div class="container">
     <div class="row">
@@ -60,21 +72,22 @@
             {{!-- <p id="option2">Selected Timeline #2</p> --}}
         </div>
         <div class="col-md-4">
-            <a class="btn btn-primary goButton" role="button">Go!</a>
+            <a class="btn btn-outline-primary goButton" role="button">Go!</a>
+            <a class="btn btn-outline-info clearButton" role="button">Clear</a>
+            <a class="btn btn-outline-success newButton" role="button" href="/create">Create Your Own Timeline!</a>
+
         </div>
     </div>
 
 </div> {{!-- end container --}}
 
 <div class="col-md-12" id="timeline">
-   <h1 class="header"></h1>
+    <h1 class="header"></h1>
     <div class="timeline">
         <div class="timeline__wrap">
             <div class="timeline__items">
 
-                {{#each data}}
-                {{> timeline-item}}
-                {{/each}}
+                {{!-- RENDERED TIMELINE HERE --}}
 
             </div> <!-- end class=timeline__items -->
         </div> <!-- end class=timeline__wrap -->

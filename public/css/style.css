@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Boogaloo|Major+Mono+Display|News+Cycle|Quicksand|Staatliches');
+
 /*************************************/
 /*                                   */
 /* MAIN CSS FOR ALL HANDLEBARS PAGES */
@@ -9,7 +11,15 @@
 /* NAVBAR */
 /* ------- */
 
-.navbar h2, .navbar p{
+.navbar {
+    background-color: white;
+}
+
+.navbar h2 {
+    color: white;
+}
+
+.navbar h2 {
     margin-bottom: 0px;
 }
 
@@ -17,8 +27,51 @@
 /* JUMBOTRON */
 /* --------- */
 
+.jumbotron {
+    background-image: url("../images/header.jpg");
+    background-size: cover;
+    color: white;
+}
+
 .jumbotron h1 {
     font-size: 7em;
+    text-shadow: 5px 5px 10px grey;
+    font-family: "Quicksand";
+}
+
+.jumbotron p {
+    font-family: "Quicksand";
+    margin-top: 2%;
+}
+
+.jumbotron span#subtitle {
+    background-color: grey;
+    padding: .5%;
+    border-radius: 50px;
+}
+
+
+.jumbotron #arrow1 {
+    /* transition: .5s; */
+    animation: arrow1 1.5s infinite;
+}
+
+@keyframes arrow1 {
+    0% {margin-right:0px;}
+    50% {margin-right:10px;}
+    100% {margin-right:0px;}
+}
+
+
+.jumbotron #arrow2 {
+    /* transition: .5s; */
+    animation: arrow2 1.5s infinite;
+}
+
+@keyframes arrow2 {
+    0% {margin-left:0px;}
+    50% {margin-left:10px;}
+    100% {margin-left:0px;}
 }
 
 /*******************************/
@@ -26,6 +79,21 @@
 /* CSS FOR MAINPAGE.HANDLEBARS */
 /*                             */
 /*******************************/
+
+/* ----- */
+/* STEPS */
+/* ----- */
+
+#stepOne {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+#stepTwo {
+    text-align: center;
+    /* margin-bottom: 32px; */
+    margin-top: 32px;
+}
 
 
 /* ----------------------- */
@@ -35,13 +103,17 @@
 /* PUBLIC TIMELINES */
 
 #publicTimelines {
-    border: 1px solid red;
+    border: 1px solid grey;
+    border-radius: 20px;
+    box-shadow: 0px 0px 5px black;
     text-align: center;
+    padding: 2%;
 }
 
 #publicTimelines h1 {
     text-decoration: underline;
     text-align: center;
+    font-family: "Boogaloo";
 }
 
 p.publicTimelineOption {
@@ -62,13 +134,17 @@ p.publicTimelineOption:hover {
 /* USER TIMELINES */
 
 #userTimelines {
-    border: 1px solid red;
+    border: 1px solid grey;
+    border-radius: 20px;
+    box-shadow: 0px 0px 5px black;
     text-align: center;
+    padding: 2%;
 }
 
 #userTimelines h1 {
     text-decoration: underline;
     text-align: center;
+    font-family: "Boogaloo";
 }
 
 p.userTimelineOption {
@@ -99,15 +175,27 @@ span.userTimelineOption:hover {
     margin-bottom: 2%;
 }
 
+.selectedTimelines span {
+    font-family: "Quicksand";
+}
+
 #option1, #option2 {
     /* border: 1px solid grey; */
     margin-top: 4%;
+    color: blue;
 }
 
 .goButton {
-    /* margin-top:22.8px; */
+    margin-top:15px;
 }
 
+.clearButton {
+    margin-top: 15px;
+}
+
+.newButton {
+    margin-top: 15px;
+}
 
 /* ----------------- */
 /* RENDERED TIMELINE */
@@ -200,7 +288,9 @@ form {
 }
 
 
-/* timeline css */
+/* ------------- */
+/*  TIMELINE CSS */
+/* ------------- */
 h1.header {
     text-align: center;
     font-size: 3em;
@@ -215,17 +305,23 @@ div.timeline__item.timeline__item--left {
 
 }
 
-div.timeline__item.timeline__item--left div.timeline__content {
+div.timeline__content {
+    background-image: linear-gradient(to right, white, lightgreen, white);
+}
+
+div.timeline__content.timeline1 {
     background-image: linear-gradient(to right, white, pink, white);
 }
+
+div.timeline__content.timeline2 {
+    background-image: linear-gradient(to left, white, lightblue, white);
+}
+
 
 div.timeline__item.timeline__item--right {
     padding-right: 5%;
 }
 
-div.timeline__item.timeline__item--right div.timeline__content {
-    background-image: linear-gradient(to left, white, lightblue, white);
-}
 hr {
     border: 0;
     height: 1px;

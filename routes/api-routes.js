@@ -168,12 +168,13 @@ module.exports = function (app) {
         });
     });
 
-}; // End of module.exports
+    
+    // handlebars home page route for filling the PUblic Timelines
+    app.get("/", function (req, res){
+        db.Timeline.findAll({}).then(function (results){
+            res.render("testmainpage", {publicTimelines:results});
+            // res.json(results);
+        })
+    }); 
 
- // handlebars home page route for filling the PUblic Timelines
- app.get("/testmainpage", function (req, res){
-    db.Timeline.findAll({}).then(function (results){
-        res.render("testmainpage", {publicTimelines:results});
-        // res.json(results);
-    })
-}); 
+}; // End of module.exports

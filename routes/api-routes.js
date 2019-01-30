@@ -58,9 +58,9 @@ module.exports = function (app) {
     // POST route for creating a new TIMELINE
     app.post("/api/timeline", function (req, res) {
         db.Timeline.create({
-           title: req.body.title,
-           CategoryId: req.body.CategoryId,
-           UserId: req.body.UserId
+            title: req.body.title,
+            CategoryId: req.body.CategoryId,
+            UserId: req.body.UserId
         }).then(function (results) {
             console.log(results);
             res.json(results);
@@ -68,6 +68,18 @@ module.exports = function (app) {
     });
 
     app.post("")
+
+    // GET route for retrieving all TIMELINES associated with a SINGLE USER
+    app.get("/api/timeline/user/:UserId", function (req, res) {
+        console.log(req.params.UserId)
+        db.Timeline.findAll({
+            where: {
+                UserId: req.params.UserId
+            }
+        }).then(function (results) {
+            res.json(results);
+        });
+    });
 
     // GET route for retrieving all EVENTS associated with a SINGLE TIMELINE
     app.get("/api/timeline/:id", function (req, res) {
@@ -77,7 +89,9 @@ module.exports = function (app) {
             }
         }).then(function (results) {
             // res.json(results);
-            res.render("timeline", {data:results});
+            res.render("timeline", {
+                data: results
+            });
         });
     });
 
@@ -88,7 +102,11 @@ module.exports = function (app) {
 
         db.Occurrence.findAll({
             where: {
-                [Op.or]: [{TimelineId: timeline1}, {TimelineId: timeline2}]
+                [Op.or]: [{
+                    TimelineId: timeline1
+                }, {
+                    TimelineId: timeline2
+                }]
             },
             order: [
                 ['end_date', 'DESC']
@@ -133,7 +151,7 @@ module.exports = function (app) {
             event_description: req.body.event_description,
             start_date: req.body.start_date,
             end_date: req.body.end_date
-        
+
         }).then(function (results) {
             res.json(results);
         });
@@ -173,13 +191,15 @@ module.exports = function (app) {
         });
     });
 
-    
+
     // handlebars home page route for filling the PUblic Timelines
-    app.get("/", function (req, res){
-        db.Timeline.findAll({}).then(function (results){
-            res.render("mainpage", {publicTimelines:results});
+    app.get("/", function (req, res) {
+        db.Timeline.findAll({}).then(function (results) {
+            res.render("mainpage", {
+                publicTimelines: results
+            });
             // res.json(results);
         })
-    }); 
+    });
 
 }; // End of module.exports

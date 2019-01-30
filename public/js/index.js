@@ -97,6 +97,7 @@ $(document).ready(function () {
 
     // public timeline selection, error handling and updating the span element
     $(document).on("click", ".publicTimelineOption", function () {
+        $("#option1").empty();
         var selected = $(this).data("name");
         var id = $(this).data("id")
         $("#option1").attr("data-id", id);
@@ -104,10 +105,10 @@ $(document).ready(function () {
         var option2 = $("#option2").text();
 
         if (selected == option2) {
-            alert("Please select a different timeline")
+            alert("Timeline 1 must differ from Timeline 2")
+            $("#option1").empty();
         }
         else {
-            $("#option1").empty();
             $("#option1").text(selected);
         }
 
@@ -115,6 +116,7 @@ $(document).ready(function () {
 
     // user or another public, error handling, updating span element
     $(document).on("click", ".userTimelineOption", function () {
+        $("#option2").empty();
         var selected = $(this).data("name");
         var id = $(this).data("id")
         
@@ -123,17 +125,25 @@ $(document).ready(function () {
         var option1 = $("#option1").text();
 
         if (selected == option1) {
-            alert("Please select a different timeline");
+            alert("Timeline 2 must differ from Timeline 1");
+            $("#option2").empty();
         }
         else {
-            $("#option2").empty();
             $("#option2").text(selected);
         }
     });
 
+    // clear button on click function
+    $(document).on("click", ".clearButton", function(){
+        $("#option1").empty();
+        $("#option2").empty();
+    }); // end clear button on click function
+
     // when clicking on go, will grab the values of selected timelines, will do
     // and api call to retrieve both timelines
-    $(document).on("click", ".goButton", function (event) {
+    $(document).on("click", ".goButton", function () {
+       
+
         // event.preventDefault();
         var timeline1 = $("#option1").text();
         var timeline2 = $("#option2").text();
@@ -153,7 +163,6 @@ $(document).ready(function () {
                     // json response object
                     // console.log(res);
                     renderTimeline(res);
-                    $("#option2").empty();
                     timelineTwoId="";
                 });
         }
@@ -170,7 +179,6 @@ $(document).ready(function () {
                     // console.log(res);
 
                     renderTimeline(res);
-                    $("#option1").empty();
                     timelineOneId="";
 
                 });
@@ -190,8 +198,6 @@ $(document).ready(function () {
 
             $.post("/api/combined", timelines)
                 .then(function (res) {
-                    $("#option1").empty();
-                    $("#option2").empty();
 
                     console.log(res);
                     // render timeline with a function

@@ -172,7 +172,7 @@ module.exports = function (app) {
     // handlebars home page route for filling the PUblic Timelines
     app.get("/", function (req, res){
         db.Timeline.findAll({}).then(function (results){
-            res.render("testmainpage", {publicTimelines:results});
+            res.render("mainpage", {publicTimelines:results});
             // res.json(results);
         })
     }); 

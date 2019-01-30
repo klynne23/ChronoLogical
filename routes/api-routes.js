@@ -67,8 +67,6 @@ module.exports = function (app) {
         });
     });
 
-    app.post("")
-
     // GET route for retrieving all TIMELINES associated with a SINGLE USER
     app.get("/api/timeline/user/:UserId", function (req, res) {
         console.log(req.params.UserId)

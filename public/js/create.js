@@ -44,7 +44,7 @@ function getTimelines(){
     })  
     //this might need to be a for in because it's actually an object that's coming back
     for(var i = 0; i < timelines.length; i++){
-        $("<option />", {value: val, text: data[i].title}).appendTo(timelineDrop);
+        $("<option />", {value: timelines[i].id, text: timelines[i].title}).appendTo(timelineDrop);
     }
 }
 getTimelines();
@@ -58,6 +58,7 @@ var eventTitleContainer = $("#event-title") //variable for the event title
 $("#eventForm").on("submit", function(event){
     event.preventDefault();
     var newEvent = {
+        TimelineId: 1,
         event_name: eventTitleInput.val().trim(),
         event_description: descriptionInput.val().trim(),
         start_date: startInput.val().trim(),
@@ -65,12 +66,12 @@ $("#eventForm").on("submit", function(event){
     };
     console.log(newEvent);
     $.ajax ("/api/timeline/event", {
-        type: "POST",
+        method: "POST",
         data: newEvent
     }).then(
         function(){
             console.log(newEvent);
-            location.reload();
+            // location.reload();
         }
     );
 });

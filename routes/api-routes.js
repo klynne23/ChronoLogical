@@ -67,6 +67,8 @@ module.exports = function (app) {
         });
     });
 
+    app.post("")
+
     // GET route for retrieving all EVENTS associated with a SINGLE TIMELINE
     app.get("/api/timeline/:id", function (req, res) {
         db.Occurrence.findAll({
@@ -126,6 +128,7 @@ module.exports = function (app) {
     // POST route for creating an EVENT
     app.post("/api/timeline/event", function (req, res) {
         db.Occurrence.create({
+            TimelineId: req.body.TimelineId,
             event_name: req.body.event_name,
             event_description: req.body.event_description,
             start_date: req.body.start_date,

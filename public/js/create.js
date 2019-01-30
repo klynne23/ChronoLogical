@@ -16,7 +16,7 @@ $(".timelineForm").on("submit", function(event){
     event.preventDefault();
     var newTimeline = {
         title: $("#timelineTitle").val().trim(),
-        CategoryId: $("#timelineCategory").val().trim()
+        CategoryId: $("#timelineCategory").val()
     };
 
     console.log(newTimeline)
@@ -33,8 +33,25 @@ $(".timelineForm").on("submit", function(event){
 });
 
 //-----EVENT FORM---------
+var timelineDrop = $("<select />"); //to stick the timeline items in the dropdown
+var timelines = [];
+
+//function to get the timeline data from the api
+function getTimelines(){
+    $.get("/api/timeline", function(data){
+        timelines = data;
+        console.log(timelines);
+    })  
+    //this might need to be a for in because it's actually an object that's coming back
+    for(var i = 0; i < timelines.length; i++){
+        $("<option />", {value: val, text: data[i].title}).appendTo(timelineDrop);
+    }
+}
+getTimelines();
+
 
 var eventTitleContainer = $("#event-title") //variable for the event title
+
 
 
 //Submitting a new event
@@ -82,9 +99,6 @@ function updateOccurrence(occur){
         window.location.href = "create"
     })
 }
-
-function
-
 
 
 

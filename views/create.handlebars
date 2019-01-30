@@ -43,13 +43,13 @@
             <div>
                 <h4>Create an Event</h4>
                 <hr id="createHR">
+                <form id="eventForm">
                 <div class="form-group">
                     <label for="category">Select Timeline:</label>
                     <select class="timeline-select" id="timeline">
-                        <option id = "timeline-list"></option>
+                        {{!-- this is where the timelines will go --}}
                     </select>
                 </div>
-                <form id="eventForm">
                     <div class="form-group">
                         <label for="eventTitle">Event Title</label>
                         <input class="form-control" id="eventTitle" aria-describedby="eventTitle">

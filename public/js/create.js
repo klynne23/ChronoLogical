@@ -33,25 +33,26 @@ $(".timelineForm").on("submit", function(event){
 });
 
 //-----EVENT FORM---------
-var timelineDrop = $("<select />"); //to stick the timeline items in the dropdown
-var timelines = [];
 
 //function to get the timeline data from the api
 function getTimelines(){
-    $.get("/api/timeline", function(data){
+    var UserId = 1;
+    $.get("/api/timeline/user/" + UserId, function(data){
+        var timelineDrop = $("#timeline"); //to stick the timeline items in the dropdown
+        var timelines;
         timelines = data;
         console.log(timelines);
+        for(var i = 0; i < timelines.length; i++){
+            $("<option />", {value: timelines[i].id, text: timelines[i].title}).appendTo(timelineDrop);
+            console.log(timelines[i].title)
+        }
     })  
     //this might need to be a for in because it's actually an object that's coming back
-    for(var i = 0; i < timelines.length; i++){
-        $("<option />", {value: timelines[i].id, text: timelines[i].title}).appendTo(timelineDrop);
-    }
 }
 getTimelines();
 
 
 var eventTitleContainer = $("#event-title") //variable for the event title
-
 
 
 //Submitting a new event
@@ -76,30 +77,9 @@ $("#eventForm").on("submit", function(event){
     );
 });
 
-//select timeline from the drop down
 
 
-//Get events to select
-function getOccurence (occurence){
-    if(timelineId == 1)
-    timelineId = "/?timelineId" + timelineId
-}
-$.get("/api/timeline/event" + timelineId, function(data){
-    console.log("Events", data);
-    var events = data;
-})
 
-//UPDATE - posting an update
-function updateOccurrence(occur){
-    $.ajax({
-        method: "PUT",
-        url: "/api/timeline/event",
-        data: occur
-    })
-    .then(function(){
-        window.location.href = "create"
-    })
-}
 
 
 

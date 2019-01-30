@@ -16,17 +16,17 @@ $(".timelineForm").on("submit", function(event){
     event.preventDefault();
     var newTimeline = {
         title: $("#timelineTitle").val().trim(),
-        CategoryId: $("#timelineCategory").val()
+        CategoryId: $("#timelineCategory").val(),
+        UserId: 1
     };
-
     console.log(newTimeline)
 
     $.ajax("/api/timeline", {
-        type: "POST",
+        method: "POST",
         data: newTimeline
     }).then(
         function(){
-            console.log(newTimeline);
+            // console.log(newTimeline);
             location.reload();
         }
     );

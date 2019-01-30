@@ -59,8 +59,10 @@ module.exports = function (app) {
     app.post("/api/timeline", function (req, res) {
         db.Timeline.create({
            title: req.body.title,
-           CategoryId: req.body.id
+           CategoryId: req.body.CategoryId,
+           UserId: req.body.UserId
         }).then(function (results) {
+            console.log(results);
             res.json(results);
         });
     });

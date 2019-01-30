@@ -24,11 +24,11 @@
                     <div class="form-group">
                         <label for="timelineCategory">Timeline Category</label>
                         <select class="form-control" id="timelineCategory">
-                            <option>History</option>
-                            <option>Personal</option>
-                            <option>Science</option>
-                            <option>Pop Culture</option>
-                            <option>Other</option>
+                            <option value="1">History</option>
+                            <option value="2">Personal</option>
+                            <option value="3">Science</option>
+                            <option value="4">Pop Culture</option>
+                            <option value="5">Other</option>
                         </select>
                     </div>
 
@@ -39,58 +39,77 @@
             </div>
         </div>{{!-- end col-md --}}
 
-        <div class="col-md-6" id="editTimelineDiv">
+        <div class="col-md-4" id="editTimelineDiv">
             <div>
-                <h4>Edit an Event</h4>
+                <h4>Create an Event</h4>
                 <hr id="createHR">
+                <div class="form-group">
+                    <label for="category">Select Timeline:</label>
+                    <select class="custom-select" id="timeline">
+                    </select>
+                </div>
                 <form id="eventForm">
                     <div class="form-group">
-                        <label for="category">Select Timeline:</label>
-                        <select class="custom-select" id="timeline">
-                        </select>
-                        <div class="form-group">
-                            <label for="eventTitle">Event Title</label>
-                            <input class="form-control" id="eventTitle" aria-describedby="eventTitle">
-                        </div>
-                        <div class="form-group">
-                            <label for="descriptionArea">Event Description</label>
-                            <textarea class="form-control" id="descriptionArea" rows="2"></textarea>
-                        </div>
+                        <label for="eventTitle">Event Title</label>
+                        <input class="form-control" id="eventTitle" aria-describedby="eventTitle">
+                    </div>
+                    <div class="form-group">
+                        <label for="descriptionArea">Event Description</label>
+                        <textarea class="form-control" id="descriptionArea" rows="2"></textarea>
+                    </div>
 
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col">
-                                    <label for="startDate">Start Date</label>
-                                    <input class="form-control" id="startDate" placeholder="DD-MM-YYYY">
-                                </div>
-                                <div class="col">
-                                    <label for="endDate">End Date (optional) </label>
-                                    <input class="form-control" id="endDate" placeholder="DD-MM-YYYY">
-                                </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col">
+                                <label for="startDate">Start Date</label>
+                                <input class="form-control" id="startDate" placeholder="DD-MM-YYYY">
+                            </div>
+                            <div class="col">
+                                <label for="endDate">End Date (optional) </label>
+                                <input class="form-control" id="endDate" placeholder="DD-MM-YYYY">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Save</button>
                     </div>
-                </form>
+                    <button type="submit" class="btn btn-primary">Save</button>
             </div>
+            </form>
         </div>
 
-
-        <div class="col-md-3" id="userCreatedTimelines">
-            <div>
-
-                <h4>Your Timelines</h4>
-                <hr id="divider">
-                <p>Barbie<button>View</button><button>Edit</button><button>Delete</button></p>
-                <p>Family History<button>View</button><button>Edit</button><button>Delete</button></p>
-
+        <div class="col-md-4" id="editTimelineDiv">
+            <h4>Edit an Event</h4>
+            <hr id="createHR">
+            <button type="submit" class="btn btn-primary">Edit Event</button>
+            <div class="form-group">
+                <label for="category">Select Timeline:</label>
+                <select class="custom-select" id="timeline"></select>
             </div>
-        </div> {{!-- end col-md --}}
+            <p>Event Title</p>
+            <div class="event-title"> </div>
+
+            <p>Event Description</p>
+            <div class="event-description"></div>
+            <p>Start Date</p>
+            <div class="start-date"></div>
+            <p>End Date</p>
+            <div class="end-date"></div>
+
+
+        </div>{{!--end column--}}
+
+
     </div>{{!-- end row --}}
 </div> {{!-- end container --}}
 
+<div class="col-md-12" id="userCreatedTimelines">
+    <div>
+
+        <h4>Your Timelines</h4>
+        <hr id="divider">
+        <p>Barbie<button>View</button><button>Edit</button><button>Delete</button></p>
+        <p>Family History<button>View</button><button>Edit</button><button>Delete</button></p>
+    </div>
 
 
-<div class="col-md-12" id="timeline">
-    Timeline will render here
-</div> {{!-- end container/timeline1 --}}
+    <div class="col-md-12" id="timeline">
+        Timeline will render here
+    </div> {{!-- end container/timeline1 --}}

@@ -16,7 +16,7 @@ $(".timelineForm").on("submit", function(event){
     event.preventDefault();
     var newTimeline = {
         title: $("#timelineTitle").val().trim(),
-        cat_name: $("#timelineCategory").val().trim()
+        CategoryId: $("#timelineCategory").val().trim()
     };
 
     console.log(newTimeline)
@@ -33,6 +33,10 @@ $(".timelineForm").on("submit", function(event){
 });
 
 //-----EVENT FORM---------
+
+var eventTitleContainer = $("#event-title") //variable for the event title
+
+
 //Submitting a new event
 $("#eventForm").on("submit", function(event){
     event.preventDefault();
@@ -53,6 +57,33 @@ $("#eventForm").on("submit", function(event){
         }
     );
 });
+
+//select timeline from the drop down
+
+
+//Get events to select
+function getOccurence (occurence){
+    if(timelineId == 1)
+    timelineId = "/?timelineId" + timelineId
+}
+$.get("/api/timeline/event" + timelineId, function(data){
+    console.log("Events", data);
+    var events = data;
+})
+
+//UPDATE - posting an update
+function updateOccurrence(occur){
+    $.ajax({
+        method: "PUT",
+        url: "/api/timeline/event",
+        data: occur
+    })
+    .then(function(){
+        window.location.href = "create"
+    })
+}
+
+function
 
 
 

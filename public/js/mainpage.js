@@ -15,6 +15,6 @@ $(document).ready(function () {
         timeline2: 2
     }
 
-    getCombinedTL(timelines);
+    // getCombinedTL(timelines);
 
 }); // End of document ready

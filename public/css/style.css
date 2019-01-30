@@ -45,10 +45,19 @@
 }
 
 p.publicTimelineOption {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     text-align: center;
     margin-bottom: 1%;
+    transition: .3s;
 }
+
+p.publicTimelineOption:hover {
+    color: lightblue;
+    /* Start http://www.cursors-4u.com */ 
+    cursor: url(http://cur.cursors-4u.net/others/oth-7/oth665.cur), auto !important; 
+    /* End http://www.cursors-4u.com */
+}
+
 
 /* USER TIMELINES */
 
@@ -63,9 +72,21 @@ p.publicTimelineOption {
 }
 
 p.userTimelineOption {
-    border: 1px solid black;
-    text-align: center;
     margin-bottom: 1%;
+}
+
+span.userTimelineOption {
+    /* border: 1px solid black; */
+    text-align: center;
+    /* margin-bottom: 1%; */
+    transition: .3s;
+}
+
+span.userTimelineOption:hover {
+    color: lightblue;
+    /* Start http://www.cursors-4u.com */ 
+    cursor: url(http://cur.cursors-4u.net/others/oth-7/oth665.cur), auto !important; 
+    /* End http://www.cursors-4u.com */
 }
 
 
@@ -79,17 +100,22 @@ p.userTimelineOption {
 }
 
 #option1, #option2 {
-    border: 1px solid grey;
+    /* border: 1px solid grey; */
     margin-top: 4%;
 }
+
+.goButton {
+    /* margin-top:22.8px; */
+}
+
 
 /* ----------------- */
 /* RENDERED TIMELINE */
 /* ----------------- */
 
-#timeline {
+/* #timeline {
     border: 2px solid red;
-}
+} */
 
 
 /*****************************/
@@ -171,4 +197,37 @@ form {
     margin-top: 1%;
     margin-bottom: 0px;
     /* text-align: center; */
+}
+
+
+/* timeline css */
+h1.header {
+    text-align: center;
+    font-size: 3em;
+}
+
+div.timeline__content {
+text-align: center;
+}
+
+div.timeline__item.timeline__item--left {
+    padding-left: 5%;
+
+}
+
+div.timeline__item.timeline__item--left div.timeline__content {
+    background-image: linear-gradient(to right, white, pink, white);
+}
+
+div.timeline__item.timeline__item--right {
+    padding-right: 5%;
+}
+
+div.timeline__item.timeline__item--right div.timeline__content {
+    background-image: linear-gradient(to left, white, lightblue, white);
+}
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 }

@@ -43,13 +43,13 @@
             <div>
                 <h4>Create an Event</h4>
                 <hr id="createHR">
-                <form id="eventForm">
-                <div class="form-group">
-                    <label for="category">Select Timeline:</label>
-                    <select class="timeline-select" id="timeline">
-                        {{!-- this is where the timelines will go --}}
-                    </select>
-                </div>
+                <form id="TimelineForm">
+                    <div class="form-group">
+                        <label for="category">Select Timeline:</label>
+                        <select class="timeline-select" id="timeline">
+                            {{!-- this is where the timelines will go --}}
+                        </select>
+                    </div>
                     <div class="form-group">
                         <label for="eventTitle">Event Title</label>
                         <input class="form-control" id="eventTitle" aria-describedby="eventTitle">
@@ -79,24 +79,35 @@
         <div class="col-md-4" id="editTimelineDiv">
             <h4>Edit an Event</h4>
             <hr id="createHR">
-            <button type="submit" class="btn btn-primary">Edit Event</button>
-            <div class="form-group">
-                <label for="category">Select Timeline:</label>
-                <select class="custom-select" id="timeline"></select>
-            </div>
-            <p>Event Title</p>
-            <div class="event-title"> </div>
+            <form id="timelineEditForm">
+                <div class="form-group">
+                    <label for="category">Select Timeline:</label>
+                    <select class="timeline-select" id="timeline-event">
+                        {{!-- this is where the timelines will go --}}
+                    </select>
+                </div>
+                 <button type="submit" id = "timelineSubmit" class="btn btn-primary">Submit Timeline</button>
+                </form>
+                <div class="form-group">
+                    <form id = "eventEditForm">
+                    <label for="category">Select Event:</label>
+                    <select class="event-select" id="event-select">
+                        {{!-- this is where the timelines will go --}}
+                    </select>
+                </div>
+                <button type="submit" id = "eventSubmit" class="btn btn-primary">Submit Event</button>
+                </form>
 
-            <p>Event Description</p>
-            <div class="event-description"></div>
-            <p>Start Date</p>
-            <div class="start-date"></div>
-            <p>End Date</p>
-            <div class="end-date"></div>
+                <p>Event Description</p>
+                <div class="event-description"></div>
+                <p>Start Date</p>
+                <div class="start-date"></div>
+                <p>End Date</p>
+                <div class="end-date"></div>
 
-
+                <button type="submit" class="btn btn-primary">Edit Event</button>
+            </form>
         </div>{{!--end column--}}
-
 
     </div>{{!-- end row --}}
 </div> {{!-- end container --}}

@@ -94,6 +94,22 @@ module.exports = function (app) {
         });
     });
 
+    //Returns everything - trying to get to dropdowns to work together
+    app.get("/api/timeline2/", function (req, res) {
+        db.Occurrence.findAll({
+            // where: {
+            //     TimelineId: req.params.id
+            // }
+        }).then(function (results) {
+            res.json(results);
+            // res.render("timeline", {
+            //     data: results
+            // });
+        });
+    });
+
+
+
     // POST route for retrieving all EVENTS associated with a TWO TIMELINES
     app.post("/api/combined", function (req, res) {
         let timeline1 = req.body.timeline1;

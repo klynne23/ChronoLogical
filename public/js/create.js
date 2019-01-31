@@ -149,10 +149,21 @@ $(document).ready(function () {
     // submit an event function 
     function submitEvent() {
         var event = {
-            
+            id: $("#event-select").val(),
+            event_name: $("input.event-title").val(),
+            event_description: $("input.event-description").val(),
+            start_date: $("input.start-date").val(),
+            end_date: $(".end-date").val()
         }
 
-        $.put("/api/timeline/event", event)
+        // make put request to server
+        $.ajax({
+            method: "PUT",
+            url: "/api/timeline/event",
+            data: event
+        }).then(console.log("you updated the event"));
+
+
     } // end submitEvent
 
 
@@ -160,10 +171,19 @@ $(document).ready(function () {
 
     // delete a selected event
     function deleteEvent(){
-        var eventId = {
-            id: $("#event-select").val()
-        }
-        $.delete("/api/timeline/event/" + eventId)
+        // var eventId = {
+        //     id: $("#event-select").val()
+        // }
+
+        var deleteId = $("#event-select").val();
+
+        console.log(deleteId);
+        // $.delete("/api/timeline/event/" + eventId).then(data);
+
+        $.ajax({
+            method: "DELETE",
+            url: "api/timeline/event/" + deleteId
+        }).then(console.log("you deleted the event"));
 
     } // end deleteEvent
 

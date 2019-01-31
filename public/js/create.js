@@ -58,37 +58,9 @@ $(document).ready(function () {
             }
         })
     }
-    
-    
-    getTimelines();
-    // console.log(selectedTimeline);
-    
-    
-    
-    //function to get events for the drop down
-    function getEvents() {
-        
-        $("#timelineEditForm").on("submit", function(){
-            event.preventDefault();
-            selectedTimeline = $("#timeline-event").val();
-            console.log(selectedTimeline); 
-            
-            $.get("api/timeline/" + selectedTimeline, function (data) {
-                // console.log(selectedTimeline); 
-                var eventDrop = $("#event-select"); //chooses the selector to stick events in the drop down
-                // console.log(data);
-                for (var i = 0; i < data.length; i++) {
-                    $("<option />", {
-                        value: data[i].id,
-                        text: data[i].event_name
-                    }).appendTo(eventDrop);
-                    // console.log(data[i].event_name);
-                }
-            })
-        })
-    }
 
-    getEvents();
+
+    getTimelines();
 
     //Submitting a new event
     $("#eventForm").on("submit", function (event) {
@@ -111,6 +83,51 @@ $(document).ready(function () {
             }
         );
     });
+
+    //function to get events for the drop down
+    function getEvents() {
+
+        $("#timelineEditForm").on("submit", function () {
+            event.preventDefault();
+            selectedTimeline = $("#timeline-event").val();
+            console.log(selectedTimeline);
+
+            $.get("api/timeline/" + selectedTimeline, function (data) {
+                // console.log(selectedTimeline); 
+                var eventDrop = $("#event-select"); //chooses the selector to stick events in the drop down
+                // console.log(data);
+                for (var i = 0; i < data.length; i++) {
+                    $("<option />", {
+                        value: data[i].id,
+                        text: data[i].event_name
+                    }).appendTo(eventDrop);
+                    // console.log(data[i].event_name);
+                }
+                //submitting the id from the dropdown
+                $("#eventEditForm").on("submit", function () {
+                    event.preventDefault();
+                    var editEvent = {
+                        id: $("#event-select").val()
+                    }
+                   var eventArray = (Object.values(editEvent))
+                    $.get("api/timeline/event/" + eventArray, function (data) {
+                        console.log(data);
+                        $("#event-description").text(data);
+                    })
+
+
+                    //display details that go with the event name
+                })
+
+            })
+        })
+    }
+
+    getEvents();
+
+    //RENDER EVENT DETAILS
+
+
 
 
 

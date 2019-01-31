@@ -45,7 +45,7 @@ $(document).ready(function () {
     function getTimelines() {
         var UserId = 1;
         $.get("/api/timeline/user/" + UserId, function (data) {
-            var timelineDrop = $(".timeline-select"); //to stick the timeline items in the dropdown
+            var timelineDrop = $("#timeline"); //to stick the timeline items in the dropdown
             var timelines;
             timelines = data;
             console.log(timelines);
@@ -58,9 +58,10 @@ $(document).ready(function () {
                 selectedTimeline = timelines[i].id;
             }
         })
-        $("#timelineEditForm").on("submit", function () {
-            console.log(selectedTimeline);
-        })
+    //     $("#timelineEditForm").on("submit", function () {
+    //         event.preventDefault();
+    //         console.log(selectedTimeline);
+    // })
     }
 
     getTimelines();
@@ -82,10 +83,6 @@ $(document).ready(function () {
     }
 
     getEvents();
-
-
-
-
 
 
     //Submitting a new event

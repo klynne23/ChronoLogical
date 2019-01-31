@@ -112,7 +112,13 @@ $(document).ready(function () {
                    var eventArray = (Object.values(editEvent))
                     $.get("api/timeline/event/" + eventArray, function (data) {
                         console.log(data);
-                        $("#event-description").text(data);
+                        for(var i = 0; i<data.length; i++){
+                            $("#event-title").text(data[i].event_name);
+                            $("#event-description").text(data[i].event_description);
+                            $(".start-date").text(data[i].start_date);
+                            $(".end-date").text(data[i].end_date);
+
+                        }
                     })
 
 

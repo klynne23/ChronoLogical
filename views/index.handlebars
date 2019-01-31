@@ -59,22 +59,17 @@
     $(document).ready(function () {
 
         if ($("#login").hasClass("visible")) {
-            $("#signup").removeClass("visible")
-            $("#signup").addClass("invisible")
+            $("#signup").removeClass("visible").addClass("invisible");
         };
 
         $(document).on("click", "#linkSignup", function () {
-            $("#login").removeClass("visible");
-            $("#login").addClass("invisible");
-            $("#signup").removeClass("invisible");
-            $("#signup").addClass("visible");
+            $("#login").removeClass("visible").addClass("invisible");
+            $("#signup").removeClass("invisible").addClass("visible");
         });
 
         $(document).on("click", "#linkSignupDone", function () {
-            $("#signup").removeClass("visible");
-            $("#signup").addClass("invisible");
-            $("#login").removeClass("invisible");
-            $("#login").addClass("visible");
+            $("#signup").removeClass("visible").addClass("invisible");
+            $("#login").removeClass("invisible").addClass("visible");
         });
 
     });

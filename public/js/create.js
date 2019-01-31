@@ -105,7 +105,7 @@ $(document).ready(function () {
                     // console.log(data[i].event_name);
                 }
                 //submitting the id from the dropdown
-                $("#eventEditForm").on("submit", function () {
+                $(document).on("click", "#eventSubmit", function () {
                     event.preventDefault();
                     var editEvent = {
                         id: $("#event-select").val()

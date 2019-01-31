@@ -8,9 +8,9 @@ var passport = require("../config/passport");
 module.exports = function (app) {
 
     //LOGIN - posts the authentication request to the user table
-    app.post("/api/login", passport.authenticate("local"), function (req, res) {
+    app.post("/api/index", passport.authenticate("local"), function (req, res) {
         //I think this will return the user back to the index page in our case - this line might not work
-        res.json("/index")
+        res.json("/create")
     });
 
     //SIGNUP - adds a new row to the user table - 307 is temporary redirect

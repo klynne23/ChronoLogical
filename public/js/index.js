@@ -2,42 +2,46 @@ $(document).ready(function () {
 
     //variables to hold user information from the form
     var loginForm = $("form.login");
-    var usernameloginInput = $("input#usernamelogin-input");
-    var passwordloginInput = $("input#passwordlogin-input");
+    var usernameloginInput = $("input#usernamelogin-input.form-control");
+    var passwordloginInput = $("input#passwordlogin-input.form-control");
 
+    console.log(loginForm);
+    console.log(usernameloginInput);
+    console.log(passwordloginInput);
+    
     //LOGIN FORM ON SUBMIT
     loginForm.on("submit", function (event) {
-        event.preventDeafult();
-
+        event.preventDefault();
+        
         //creates the userData object to be passed into the loginUser function (which is hoisted from below)
-        var userData = {
+        var userLogin = {
             username: usernameloginInput.val().trim(),
             password: passwordloginInput.val().trim()
         };
-        console.log(userData);
-
+        console.log(userLogin);
+        
         //checks to see if there is info entered in both fields in the form -> if not it returns nothing
-        if (!userData.username || !userData.password) {
+        if (!userLogin.username || !userLogin.password) {
             return;
         }
-
+        
         //if there's info in both fields, then it runs the loginUser function from below and clears the form
-        loginUser(userData.username, userData.password);
+        loginUser(userLogin.username, userLogin.password);
         usernameloginInput.val("");
         passwordloginInput.val("");
-
-
+        
+        
     }); //end of LOGIN FORM ON SUBMIT
-
+    
     function loginUser(username, password) {
         //ajax post request to send info to the server - api-routes will have the SQL comparison to the table/user model
-        $.post("/api/login", {
+        $.post("/api/index", {
             //the two variables from the object
             username: username,
             password: password
         }).then(function (data) {
             window.location.replace(data);
-            console.log(username + password);
+            // console.log(username + password);
         }).catch(function (err) {
             console.log(err);
         });

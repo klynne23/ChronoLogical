@@ -49,7 +49,7 @@ $(document).ready(function () {
             var timelineDrop = $(".timeline-select"); //to stick the timeline items in the dropdown
             var timelines;
             timelines = data;
-            console.log(timelines);
+            // console.log(timelines);
             for (var i = 0; i < timelines.length; i++) {
                 $("<option />", {
                     value: timelines[i].id,

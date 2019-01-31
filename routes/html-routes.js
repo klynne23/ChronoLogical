@@ -11,16 +11,21 @@ module.exports = function (app) {
 
     //route to the mytimelines html
 
-    //this is related to authentication - but it's basically the same route as index. I need to do more research to figure out how to just slightly change the page after login
-    app.get("/index", isAuthenticated, function(req, res) {
-    //    res.render("create");
+    //if logged in, then you can go to create, if not, you go to the mainpage
+    app.get("/index", function(req, res) {
+        if(req.user){
+            res.redirect("create");
+        }
+       res.render("index");
       });
 
-    app.get("/main", function(req, res){
-        res.render("index"); 
+
+    app.get("/", function(req, res){
+        res.render("mainpage"); 
     })
 
-    app.get("/create", function(req, res){
+    //redirects to create page if login credentials are authenticated
+    app.get("/create", isAuthenticated, function(req, res){
         res.render("create");
     });
 

@@ -1,55 +1,79 @@
-<div class="container">
+<div class="navbar">
+    <h2>
+        <a href="/">
+            <svg width="24" height="30" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+                <path d="M22 11.414v12.586h-20v-12.586l-1.293 1.293-.707-.707 12-12 12 12-.707.707-1.293-1.293zm-6 11.586h5v-12.586l-9-9-9 9v12.586h5v-9h8v9zm-1-7.889h-6v7.778h6v-7.778z" />
+            </svg>
+        </a>
+    </h2>
+    <a class="btn btn-primary" href="/index" role="button">Login | Sign Up</a>
+</div> {{!-- end navbar --}}
 
-    {{!-- LOGIN CARD --}}
-    <div class="col-6 align-center">
-        <div id="login" class="card visible">
-            <div class="card-header">
-                <h2>Login</h2>
-            </div>
-            <div class="card-body">
-                <form class="login">
-                    <div class="form-group">
-                        <label for="exampleInputUsername1">Username</label>
-                        <input type="username" class="form-control" id="usernamelogin-input" placeholder="Username">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="passwordlogin-input" placeholder="Password">
-                    </div>
-                    <a href="#" id="btnLogin" type="submit" class="btn btn-default">Login</a>
-                    <a href="#" id="linkSignup" type="link">Sign up</a>
-                </form>
-            </div>
-        </div>
-    </div>
+<div class="jumbotron text-center header-wrap" align="center">
+    <h1><strong> <span id="arrow1">《</span> ChronoLogical <span id="arrow2"> 》</span></strong></h1>
 
-    {{!-- SIGN UP CARD --}}
-    <div id="signup" class="card w-50 invisible">
-        <div class="card-header">
-            <h2>Sign Up</h2>
+    <p><span id="subtitle">Create and Edit your Timelines!</span></p>
+</div> {{!-- end jumbotron --}}
+
+
+<div class="container loginIn">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-5 loginCard">
+            {{!-- LOGIN CARD --}}
+            <div id="login" class="card visible">
+                <div class="card-header">
+                    <h2>Login</h2>
+                </div>
+                <div class="card-body">
+                    <form class="login">
+                        <div class="form-group">
+                            <label for="exampleInputUsername1">Username</label>
+                            <input type="username" class="form-control" id="usernamelogin-input" placeholder="Username">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" id="passwordlogin-input" placeholder="Password">
+                        </div>
+                        <button type="submit" class="btn btn-outline-primary "><a href="#">Login</a></button>
+                        <button type="submit" class="btn btn-outline-primary "><a href="#" id="linkSignup">Sign Up</a></button>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="card-body">
-            <form class="signup">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="email-input" placeholder="Email">
+        <div class="col-md-5 signUpCard">
+            {{!-- SIGN UP CARD --}}
+            <div id="signup" class="card invisible">
+                <div class="card-header">
+                    <h2>Sign Up</h2>
                 </div>
-                <div class="form-group">
-                    <label for="exampleInputUsername1">Username</label>
-                    <input type="username" class="form-control" id="username-input" placeholder="Username">
+                <div class="card-body">
+                    <form class="signup">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" class="form-control" id="email-input" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputUsername1">Username</label>
+                            <input type="username" class="form-control" id="username-input" placeholder="Username">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" id="password-input" placeholder="Password">
+                        </div>
+                        <div style="display: none" id="alert" class="alert alert-danger" role="alert">
+                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                            <span class="sr-only">Error:</span> <span class="msg"></span>
+                        </div>
+                        <a href="#" id="linkSignupDone" type="submit" class="btn btn-default">Sign Up</a>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="password-input" placeholder="Password">
-                </div>
-                <div style="display: none" id="alert" class="alert alert-danger" role="alert">
-                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                    <span class="sr-only">Error:</span> <span class="msg"></span>
-                </div>
-                <a href="#" id="linkSignupDone" type="submit" class="btn btn-default">Sign Up</a>
-            </form>
+            </div>
         </div>
-    </div>
+ 
+
+    <div class="col-md-1"></div>
+</div> {{!-- end row --}}
 
 </div>
 

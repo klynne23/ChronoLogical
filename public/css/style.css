@@ -16,7 +16,7 @@
 }
 
 .navbar h2 {
-    color: white;
+    color: black;
 }
 
 .navbar h2 {
@@ -213,54 +213,22 @@ span.userTimelineOption:hover {
 /*****************************/
 
 
-/* --------------- */
-/* USERS TIMELINES */
-/* --------------- */
-
-.row1 {
-    margin-bottom: 2%;
-}
-
-#userCreatedTimelines {
-    border: 1px solid blue;
-    text-align: center;
-    padding-right: 0px;
-    padding-left: 0px;
-}
-
-#userCreatedTimelines h4 {
-    margin-top: 2%;
-    margin-bottom: 0px;
-}
-
-#divider {
-    margin-top: 0px;
-    border: 0;
-    height: 2px;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
-}
-
 /* ----------------- */
 /* CREATE A TIMELINE */
 /* ----------------- */
 
 
 #createTimelineDiv {
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
+    font-family: "Quicksand";
+    
 }
 
-#createTimelineDiv h4 {
-    margin-top: 1%;
+#createTimelineDiv h3 {
+    margin-top: 2%;
     margin-bottom: 0px;
-    /* text-align: center; */
-}
-
-#createHR {
-    margin-top: 0px;
-    border: 2px solid black;
-    margin-bottom: 1%;
-    /* height: 2px; */
-    /* background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0)); */
+    text-align: center;
+    font-family: "Boogaloo";
 }
 
 /* -------------------- */
@@ -273,19 +241,90 @@ form {
     margin-bottom: 2%;
 }
 
-/* ------------------ */
-/* EDIT TIMELINE FORM */
-/* ------------------ */
 
-#editTimelineDiv {
-    border: 1px solid red;
+
+/* --------------- */
+/* USERS TIMELINES */
+/* --------------- */
+
+.row1 {
+    margin-bottom: 2%;
 }
 
-#editTimelineDiv h4 {
+#userCreatedTimelines {
+    /* border: 1px solid blue; */
+    text-align: center;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+#userCreatedTimelines h3 {
+    margin-top: 2%;
+    margin-bottom: 0px;
+    font-family: "Boogaloo";
+}
+
+#divider {
+    margin-top: 0px;
+    border: 0;
+    height: 2px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+/* ----------------- */
+/* CREATE EVENT FORM */
+/* ----------------- */
+
+#createEventDiv {
+    font-family: "Quicksand";
+}
+
+#createEventDiv h3 {
     margin-top: 1%;
     margin-bottom: 0px;
-    /* text-align: center; */
+    font-family: "Boogaloo";
+    text-align: center;
 }
+
+
+/* --------------- */
+/* EDIT EVENT FORM */
+/* --------------- */
+
+#editTimelineDiv {
+    font-family: "Quicksand";
+}
+
+#editTimelineDiv h3 {
+    margin-top: 1%;
+    margin-bottom: 0px;
+    font-family: "Boogaloo";
+    text-align: center;
+}
+
+#timelineSubmit {
+    margin-left: 2%;
+}
+
+#eventSubmit {
+    margin-left: 2%;
+}
+
+input {
+    width: 100%;
+}
+
+.crudButtons{
+    padding-left: 2%;
+    margin-top: 2%;
+}
+
+/******************************/
+/*                            */
+/* CSS FOR RENDERING TIMELINES */
+/*                            */
+/******************************/
+
 
 
 /* ------------- */
@@ -326,4 +365,23 @@ hr {
     border: 0;
     height: 1px;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+
+/******************************/
+/*                            */
+/* CSS FOR SIGNUP/LOGIN CARDS */
+/*                            */
+/******************************/
+
+#login {
+    border: 1px solid green;
+}
+
+#signup {
+    border: 1px solid red;
+}
+
+.container.loginIn {
+    margin-top: 3%;
 }

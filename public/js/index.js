@@ -147,15 +147,26 @@ $(document).ready(function () {
         // event.preventDefault();
         var timeline1 = $("#option1").text();
         var timeline2 = $("#option2").text();
-        var timelineOneId = $("#option1").data("id");
-        var timelineTwoId = $("#option2").data("id");
+        var timelineOneId;
+        var timelineTwoId;
+
+        // issues with this code when generating more timelines
+        // timelineOneId = $("#option1").data("id");
+        // timelineTwoId = $("#option2").data("id");
 
         if (timeline1 == "" && timeline2 == "") {
             alert("please select at least one timeline");
         }
         else if (timeline1 == "") {
 
-            var timelineTwoId = $("#option2").data("id");
+            // timelineTwoId = $("#option2").data("id");
+
+            if (timeline2 == "U.S. States Admission"){
+                timelineTwoId = 1;
+            }
+            else {
+                timelineTwoId = 2;
+            }
 
             console.log("timeline id: "+ timelineTwoId);
             $.get("/api/timeline/" + timelineTwoId)
@@ -168,7 +179,14 @@ $(document).ready(function () {
         }
         else if (timeline2 == "") {
 
-            var timelineOneId = $("#option1").data("id");
+            // timelineOneId = $("#option1").data("id");
+
+            if (timeline1 == "U.S. States Admission"){
+                timelineOneId = 1;
+            }
+            else {
+                timelineOneId = 2;
+            }
 
             console.log("timeline id: "+ timelineOneId);
 
@@ -185,8 +203,21 @@ $(document).ready(function () {
         }
 
         else {
-            var timelineOneId = $("#option1").data("id");
-            var timelineTwoId = $("#option2").data("id");
+
+            // set the IDs for each timeline
+            if (timeline1 == "U.S. States Admission"){
+                timelineOneId = 1;
+            }
+            else {
+                timelineOneId = 2;
+            }
+    
+            if (timeline2 == "U.S. States Admission"){
+                timelineTwoId = 1;
+            }
+            else {
+                timelineTwoId = 2;
+            }
     
             console.log("your 2 selected timelines are " + timeline1 + " & " + timeline2);
             console.log("The Ids are " + timelineOneId + " & " + timelineTwoId);

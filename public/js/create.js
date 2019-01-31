@@ -45,7 +45,7 @@ $(document).ready(function () {
     function getTimelines() {
         var UserId = 1;
         $.get("/api/timeline/user/" + UserId, function (data) {
-            var timelineDrop = $("#timeline"); //to stick the timeline items in the dropdown
+            var timelineDrop = $(".timeline-select"); //to stick the timeline items in the dropdown
             var timelines;
             timelines = data;
             console.log(timelines);
@@ -54,36 +54,41 @@ $(document).ready(function () {
                     value: timelines[i].id,
                     text: timelines[i].title
                 }).appendTo(timelineDrop);
-                console.log(timelines[i].title)
-                selectedTimeline = timelines[i].id;
+                // console.log(timelines[i].title)
             }
         })
-    //     $("#timelineEditForm").on("submit", function () {
-    //         event.preventDefault();
-    //         console.log(selectedTimeline);
-    // })
     }
-
+    
+    
     getTimelines();
     // console.log(selectedTimeline);
-
+    
+    
+    
     //function to get events for the drop down
     function getEvents() {
-        $.get("api/timeline2/", function (data) {
-            var eventDrop = $("#event-select"); //chooses the selector to stick events in the drop down
-            // console.log(data);
-            for (var i = 0; i < data.length; i++) {
-                $("<option />", {
-                    value: data[i].id,
-                    text: data[i].event_name
-                }).appendTo(eventDrop);
-                // console.log(data[i].event_name);
-            }
+        
+        $("#timelineEditForm").on("submit", function(){
+            event.preventDefault();
+            selectedTimeline = $("#timeline-event").val();
+            console.log(selectedTimeline); 
+            
+            $.get("api/timeline/" + selectedTimeline, function (data) {
+                // console.log(selectedTimeline); 
+                var eventDrop = $("#event-select"); //chooses the selector to stick events in the drop down
+                // console.log(data);
+                for (var i = 0; i < data.length; i++) {
+                    $("<option />", {
+                        value: data[i].id,
+                        text: data[i].event_name
+                    }).appendTo(eventDrop);
+                    // console.log(data[i].event_name);
+                }
+            })
         })
     }
 
     getEvents();
-
 
     //Submitting a new event
     $("#eventForm").on("submit", function (event) {

@@ -19,9 +19,6 @@ module.exports = function (app) {
        res.render("index");
       });
 
-    //   app.get("/", function(req, res){
-    //     res.render("mainpage"); 
-    // })
 
     //redirects to create page if login credentials are authenticated
     app.get("/create", isAuthenticated, function(req, res){

@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     //variables to hold user information from the form
-    var loginForm = $("form.login");
+    var loginForm = $("form#login");
     var usernameloginInput = $("input#usernamelogin-input.form-control");
     var passwordloginInput = $("input#passwordlogin-input.form-control");
 
@@ -48,7 +48,7 @@ $(document).ready(function () {
     }
 
     //SIGN UP FORM
-    var signUpForm = $("form.signup");
+    var signUpForm = $("form#signup");
     var emailInput = $("input#email-input");
     var usernameInput = $("input#username-input");
     var passwordInput = $("input#password-input");

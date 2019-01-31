@@ -375,11 +375,11 @@ hr {
 /******************************/
 
 #login {
-    border: 1px solid green;
+    /* border: 1px solid green; */
 }
 
 #signup {
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
 
 .container.loginIn {

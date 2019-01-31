@@ -294,7 +294,7 @@ $(document).ready(function () {
 
             // timeline script to initiate timeline
             $('.timeline').timeline({
-                verticalStartPosition: 'right',
+                verticalStartPosition: 'left',
                 verticalTrigger: '150px',
             });
 

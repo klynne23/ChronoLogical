@@ -4,7 +4,7 @@
 </div>
 
 <div class="jumbotron text-center header-wrap" align="center">
-    <h1><strong>《 Your Timelines 》</strong></h1>
+    <h1><strong>《 My Timelines 》</strong></h1>
 
     <p>View your existing timelines or create a brand new one!</p>
 </div> {{!-- end jumbotron --}}
@@ -15,7 +15,7 @@
         <div class="col-md-3" id="createTimelineDiv">
             <div>
                 <h4>Add new Timeline</h4>
-                <hr id="createHR">
+                <hr>
                 <form class="timelineForm">
                     <div class="form-group">
                         <label for="timelineTitle">Timeline Title</label>
@@ -86,28 +86,30 @@
                         {{!-- this is where the timelines will go --}}
                     </select>
                 </div>
-                 <button type="submit" id = "timelineSubmit" class="btn btn-primary">Submit Timeline</button>
-                </form>
-                <div class="form-group">
-                    <form id = "eventEditForm">
+                <button type="submit" id="timelineSubmit" class="btn btn-primary">Submit Timeline</button>
+            </form>
+            <div class="form-group">
+                <form id="eventEditForm">
                     <label for="category">Select Event:</label>
                     <select class="event-select" id="event-select">
                         {{!-- this is where the timelines will go --}}
                     </select>
-                </div>
-                <button type="submit" id = "eventSubmit" class="btn btn-primary">Submit Event</button>
-                </form>
-                <p>Event Title</p>
-                <div class="event-title" id = "event-title"></div>
+            </div>
+            <button type="submit" id="eventSubmit" class="btn btn-primary">Submit Event</button>
+            </form>
+            <p>Event Title</p>
+            <input type="text" class="editEvent event-title" id="event-title">
 
-                <p>Event Description</p>
-                <div class="event-description" id = "event-description"></div>
-                <p>Start Date</p>
-                <div class="start-date"></div>
-                <p>End Date</p>
-                <div class="end-date"></div>
+            <p>Event Description</p>
+            <input type="text" class="editEvent event-description" id="event-description">
+            <p>Start Date</p>
+            <input type="text" class="editEvent start-date">
+            <p>End Date</p>
+            <input  type="text"class="editEvent end-date">
 
-                <button type="submit" class="btn btn-primary">Edit Event</button>
+            <button type="submit" class="btn btn-primary submitEvent">Edit Event</button>
+            <button type="submit" class="btn btn-primary deleteEvent">Delete Event</button>
+
             </form>
         </div>{{!--end column--}}
 

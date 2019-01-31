@@ -302,7 +302,7 @@ $(document).ready(function () {
 
         // FUNCTION TO RENDER 2 TIMELINES
         var renderTwoTimelines = function (data, t1, t2) {
-            console.log("You want to render 2 timelines")
+            console.log("You want to render 2 timelines with Ids:"+ t1 + " & "+t2);
 
             data.forEach(element => {
                 var timelineItem = $("<div>");
@@ -355,6 +355,7 @@ $(document).ready(function () {
                 // append the timeline content div to the timeline item
                 timelineItem.append(timelineContent);
 
+                // append each timeline item to the timeline__items div
                 $(".timeline__items").append(timelineItem);
 
                 
@@ -362,7 +363,7 @@ $(document).ready(function () {
 
             // timeline script to initiate timeline
             $('.timeline').timeline({
-                verticalStartPosition: 'right',
+                verticalStartPosition: 'left',
                 verticalTrigger: '150px',
             });
         };

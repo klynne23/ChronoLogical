@@ -43,6 +43,7 @@ $(document).ready(function () {
     var selectedTimeline;
 
     function getTimelines() {
+        // will need to change UserId to whatever the Id of the user who is logged in is
         var UserId = 1;
         $.get("/api/timeline/user/" + UserId, function (data) {
             var timelineDrop = $(".timeline-select"); //to stick the timeline items in the dropdown
@@ -113,10 +114,10 @@ $(document).ready(function () {
                     $.get("api/timeline/event/" + eventArray, function (data) {
                         console.log(data);
                         for(var i = 0; i<data.length; i++){
-                            $("#event-title").text(data[i].event_name);
-                            $("#event-description").text(data[i].event_description);
-                            $(".start-date").text(data[i].start_date);
-                            $(".end-date").text(data[i].end_date);
+                            $("#event-title").val(data[i].event_name);
+                            $("#event-description").val(data[i].event_description);
+                            $(".start-date").val(data[i].start_date);
+                            $(".end-date").val(data[i].end_date);
 
                         }
                     })
@@ -135,7 +136,36 @@ $(document).ready(function () {
 
 
 
+    // editing the events
+    $(document).on("click", ".editEvent", editEvent);
+    // edit an event function
+    function editEvent() {
+        var currentEdit = $(this).text();
+        $(this).children("input.editEvent").val(currentEdit);
+    } // end editEvent
 
+    $(document).on("click", ".submitEvent", submitEvent);
+
+    // submit an event function 
+    function submitEvent() {
+        var event = {
+            
+        }
+
+        $.put("/api/timeline/event", event)
+    } // end submitEvent
+
+
+    $(document).on("click", ".deleteEvent", deleteEvent);
+
+    // delete a selected event
+    function deleteEvent(){
+        var eventId = {
+            id: $("#event-select").val()
+        }
+        $.delete("/api/timeline/event/" + eventId)
+
+    } // end deleteEvent
 
 
 })

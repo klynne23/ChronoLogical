@@ -1,21 +1,27 @@
 <div class="navbar">
-    <h2>Welcome</h2>
+    <h2>
+        <a href="/">
+            <svg width="24" height="30" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+                <path d="M22 11.414v12.586h-20v-12.586l-1.293 1.293-.707-.707 12-12 12 12-.707.707-1.293-1.293zm-6 11.586h5v-12.586l-9-9-9 9v12.586h5v-9h8v9zm-1-7.889h-6v7.778h6v-7.778z" />
+            </svg>
+        </a>
+    </h2>
     <a class="btn btn-primary" href="/index" role="button">Login | Sign Up</a>
-</div>
+</div> {{!-- end navbar --}}
 
 <div class="jumbotron text-center header-wrap" align="center">
-    <h1><strong>《 My Timelines 》</strong></h1>
+    <h1><strong> <span id="arrow1">《</span> ChronoLogical <span id="arrow2"> 》</span></strong></h1>
 
-    <p>View your existing timelines or create a brand new one!</p>
+    <p><span id="subtitle">Create and Edit your Timelines!</span></p>
 </div> {{!-- end jumbotron --}}
 
 
 <div class="container">
     <div class="row row1">
-        <div class="col-md-3" id="createTimelineDiv">
+        <div class="col-md-6" id="createTimelineDiv">
             <div>
-                <h4>Add new Timeline</h4>
-                <hr>
+                <h3>Add new Timeline</h3>
+                <hr id="divider">
                 <form class="timelineForm">
                     <div class="form-group">
                         <label for="timelineTitle">Timeline Title</label>
@@ -39,93 +45,112 @@
             </div>
         </div>{{!-- end col-md --}}
 
-        <div class="col-md-4" id="editTimelineDiv">
-            <div>
-                <h4>Create an Event</h4>
-                <hr id="createHR">
-                <form id="eventForm">
-                    <div class="form-group">
-                        <label for="category">Select Timeline:</label>
-                        <select class="timeline-select" id="timeline">
-                            {{!-- this is where the timelines will go --}}
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="eventTitle">Event Title</label>
-                        <input class="form-control" id="eventTitle" aria-describedby="eventTitle">
-                    </div>
-                    <div class="form-group">
-                        <label for="descriptionArea">Event Description</label>
-                        <textarea class="form-control" id="descriptionArea" rows="2"></textarea>
-                    </div>
 
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col">
-                                <label for="startDate">Start Date</label>
-                                <input class="form-control" id="startDate" placeholder="DD-MM-YYYY">
-                            </div>
-                            <div class="col">
-                                <label for="endDate">End Date (optional) </label>
-                                <input class="form-control" id="endDate" placeholder="DD-MM-YYYY">
+        <div class="col-md-6" id="userCreatedTimelines">
+            <div>
+
+                <h3>Your Timelines</h3>
+                <hr id="divider">
+                <select class="timeline-select" id="timeline">
+                    {{!-- this is where the timelines will go --}}
+                </select>
+                {{!-- <p>Barbie<button>View</button><button>Edit</button><button>Delete</button></p>
+                <p>Family History<button>View</button><button>Edit</button><button>Delete</button></p> --}}
+            </div>
+
+
+        </div>{{!-- end row --}}
+    </div> {{!-- end container --}}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6" id="createEventDiv">
+                <div>
+                    <h3>Create an Event</h3>
+                    <hr id="divider">
+                    <form id="eventForm">
+                        <div class="form-group">
+                            <label for="category">Select Timeline:</label>
+                            <select class="timeline-select" id="timeline">
+                                {{!-- this is where the timelines will go --}}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventTitle">Event Title</label>
+                            <input class="form-control" id="eventTitle" aria-describedby="eventTitle">
+                        </div>
+                        <div class="form-group">
+                            <label for="descriptionArea">Event Description</label>
+                            <textarea class="form-control" id="descriptionArea" rows="2"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col">
+                                    <label for="startDate">Start Date</label>
+                                    <input class="form-control" id="startDate" placeholder="DD-MM-YYYY">
+                                </div>
+                                <div class="col">
+                                    <label for="endDate">End Date (optional) </label>
+                                    <input class="form-control" id="endDate" placeholder="DD-MM-YYYY">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Save</button>
-            </div>
-            </form>
-        </div>
-
-        <div class="col-md-4" id="editTimelineDiv">
-            <h4>Edit an Event</h4>
-            <hr id="createHR">
-            <form id="timelineEditForm">
-                <div class="form-group">
-                    <label for="category">Select Timeline:</label>
-                    <select class="timeline-select" id="timeline-event">
-                        {{!-- this is where the timelines will go --}}
-                    </select>
+                        <button type="submit addEvent" class="btn btn-primary">Save</button>
+                    </form>
                 </div>
-                <button type="submit" id="timelineSubmit" class="btn btn-primary">Submit Timeline</button>
-            </form>
-            <div class="form-group">
-                <form id="eventEditForm">
-                    <label for="category">Select Event:</label>
-                    <select class="event-select" id="event-select">
-                        {{!-- this is where the timelines will go --}}
-                    </select>
             </div>
-            <button type="submit" id="eventSubmit" class="btn btn-primary">Submit Event</button>
-            </form>
-            <p>Event Title</p>
-            <input type="text" class="editEvent event-title" id="event-title">
 
-            <p>Event Description</p>
-            <input type="text" class="editEvent event-description" id="event-description">
-            <p>Start Date</p>
-            <input type="text" class="editEvent start-date">
-            <p>End Date</p>
-            <input  type="text"class="editEvent end-date">
+            <div class="col-md-6" id="editTimelineDiv">
+                <h3>Edit an Event</h3>
+                <hr id="divider">
+                <form id="timelineEditForm">
+                    <div class="form-group">
+                        <label for="category">Select Timeline:</label>
+                        <select class="timeline-select" id="timeline-event">
+                            {{!-- this is where the timelines will go --}}
+                        </select>
+                        <span> <button type="submit" id="timelineSubmit" class="btn btn-primary">Submit Timeline</button></span>
 
-            <button type="submit" class="btn btn-primary submitEvent">Edit Event</button>
-            <button type="submit" class="btn btn-primary deleteEvent">Delete Event</button>
+                    </div>
+                </form>
 
-            </form>
-        </div>{{!--end column--}}
-
-    </div>{{!-- end row --}}
-</div> {{!-- end container --}}
-
-<div class="col-md-12" id="userCreatedTimelines">
-    <div>
-
-        <h4>Your Timelines</h4>
-        <hr id="divider">
-        <p>Barbie<button>View</button><button>Edit</button><button>Delete</button></p>
-        <p>Family History<button>View</button><button>Edit</button><button>Delete</button></p>
-    </div>
+                <form>
+                    <div class="form-group">
+                        <form id="eventEditForm">
+                            <label for="category">Select Event:</label>
+                            <select class="event-select" id="event-select">
+                                {{!-- this is where the timelines will go --}}
+                            </select>
+                            <span> <button type="submit" id="eventSubmit" class="btn btn-primary">Submit Event</button>
+                            </span>
+                    </div>
 
 
-    <div class="col-md-12" id="timeline">
+                    <label for="event-title">Event Title:</label>
+                    <input type="text" class="editEvent event-title" id="event-title">
+
+                    <label for="event-description">Event Description:</label>
+                    <input type="text" class="editEvent event-description" id="event-description">
+
+                    <label for="start-date">Start Date:</label>
+                    <input type="text" class="editEvent start-date">
+
+                    <label for="end-date">End Date:</label>
+                    <input type="text" class="editEvent end-date">
+
+                    <div class="crudButtons">
+                        <button type="submit" class="btn btn-primary submitEvent">Edit Event</button>
+                        <button type="submit" class="btn btn-primary deleteEvent">Delete Event</button>
+                    </div>
+
+                </form>
+            </div>{{!--end column--}}
+
+        </div> {{!-- end row --}}
+    </div> {{!-- end container --}}
+
+
+    {{!-- <div class="col-md-12" id="timeline">
         Timeline will render here
-    </div> {{!-- end container/timeline1 --}}
+    </div> // end container/timeline1 --}}

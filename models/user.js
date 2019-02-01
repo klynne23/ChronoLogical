@@ -1,4 +1,5 @@
 var bcrypt = require("bcrypt-nodejs");
+
 module.exports = function (sequelize, DataTypes) {
   var User = sequelize.define("User", {
     //unique email for signup
@@ -25,6 +26,7 @@ module.exports = function (sequelize, DataTypes) {
       }
     }
   });
+
   User.prototype.validPassword = function (password) {
     return bcrypt.compareSync(password, this.password);
   };
@@ -33,11 +35,6 @@ module.exports = function (sequelize, DataTypes) {
   User.addHook("beforeCreate", function (user) {
     user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
   });
-
-  // User.hook("beforeCreate", function (user) {
-  //   user.passwordlogin = bcrypt.hashSync(user.passwordlogin, bcrypt.genSaltSync(10), null);
-  // });
-
 
   // Adds a hasMany association to Timelines
   User.associate = function (models) {

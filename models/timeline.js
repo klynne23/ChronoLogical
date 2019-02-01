@@ -14,7 +14,6 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
 
-    // Add a belongsTo association to Categories here
     Timeline.associate = function (models) {
         Timeline.belongsTo(models.Category, {
             onDelete: "CASCADE",
@@ -24,7 +23,6 @@ module.exports = function (sequelize, DataTypes) {
         });
     };
 
-    // Add a belongsTo association to Users here
     Timeline.associate = function (models) {
         Timeline.belongsTo(models.User, {
             onDelete: "CASCADE",
@@ -34,7 +32,6 @@ module.exports = function (sequelize, DataTypes) {
         });
     };
 
-    // Adds a hasMany association to Events
     Timeline.associate = function (models) {
         Timeline.hasMany(models.Occurrence, {
             onDelete: "CASCADE"

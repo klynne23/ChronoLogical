@@ -5,34 +5,29 @@ $(document).ready(function () {
     var usernameloginInput = $("input#usernamelogin-input.form-control");
     var passwordloginInput = $("input#passwordlogin-input.form-control");
 
-    console.log(loginForm);
-    console.log(usernameloginInput);
-    console.log(passwordloginInput);
-    
     //LOGIN FORM ON SUBMIT
     loginForm.on("submit", function (event) {
         event.preventDefault();
-        
+
         //creates the userData object to be passed into the loginUser function (which is hoisted from below)
         var userLogin = {
             username: usernameloginInput.val().trim(),
             password: passwordloginInput.val().trim()
         };
         console.log(userLogin);
-        
+
         //checks to see if there is info entered in both fields in the form -> if not it returns nothing
         if (!userLogin.username || !userLogin.password) {
             return;
         }
-        
+
         //if there's info in both fields, then it runs the loginUser function from below and clears the form
         loginUser(userLogin.username, userLogin.password);
         usernameloginInput.val("");
         passwordloginInput.val("");
-        
-        
+
     }); //end of LOGIN FORM ON SUBMIT
-    
+
     function loginUser(username, password) {
         //ajax post request to send info to the server - api-routes will have the SQL comparison to the table/user model
         $.post("/api/index", {
@@ -86,19 +81,6 @@ $(document).ready(function () {
         });
     }
 
-    // function handleLoginErr(err){
-    //     $("#alert .msg").text(err.responseJSON);
-    //     $("#alert").fadeIn(500);
-    // }
-
-
-
-
-    //Remainder of data for the application - discuss whether we want to do this here or somewhere else
-
-
-    // populate the related divs when clicking on timeline options
-
     // public timeline selection, error handling and updating the span element
     $(document).on("click", ".publicTimelineOption", function () {
         $("#option1").empty();
@@ -111,8 +93,7 @@ $(document).ready(function () {
         if (selected == option2) {
             alert("Timeline 1 must differ from Timeline 2")
             $("#option1").empty();
-        }
-        else {
+        } else {
             $("#option1").text(selected);
         }
 
@@ -123,7 +104,7 @@ $(document).ready(function () {
         $("#option2").empty();
         var selected = $(this).data("name");
         var id = $(this).data("id")
-        
+
         $("#option2").attr("data-id", id);
 
         var option1 = $("#option1").text();
@@ -131,122 +112,49 @@ $(document).ready(function () {
         if (selected == option1) {
             alert("Timeline 2 must differ from Timeline 1");
             $("#option2").empty();
-        }
-        else {
+        } else {
             $("#option2").text(selected);
         }
     });
 
     // clear button on click function
-    $(document).on("click", ".clearButton", function(){
+    $(document).on("click", ".clearButton", function () {
         $("#option1").empty();
         $("#option2").empty();
     }); // end clear button on click function
-
     // when clicking on go, will grab the values of selected timelines, will do
-    // and api call to retrieve both timelines
+    // an api call to retrieve both timelines
     $(document).on("click", ".goButton", function () {
-       
+        var timeline1 = $("#option1").data("id");
+        var timeline2 = $("#option2").data("id");
 
-        // event.preventDefault();
-        var timeline1 = $("#option1").text();
-        var timeline2 = $("#option2").text();
-        var timelineOneId;
-        var timelineTwoId;
-
-        // issues with this code when generating more timelines
-        // timelineOneId = $("#option1").data("id");
-        // timelineTwoId = $("#option2").data("id");
-
-        if (timeline1 == "" && timeline2 == "") {
+        if (timeline1 == undefined && timeline2 == undefined) {
             alert("please select at least one timeline");
-        }
-        else if (timeline1 == "") {
-
-            // timelineTwoId = $("#option2").data("id");
-
-            if (timeline2 == "U.S. States Admission"){
-                timelineTwoId = 1;
-            }
-            else {
-                timelineTwoId = 2;
-            }
-
-            console.log("timeline id: "+ timelineTwoId);
-            $.get("/api/timeline/" + timelineTwoId)
+        } else if (timeline1 == undefined) {
+            $.get("/api/timeline/" + timeline2)
                 .then(function (res) {
-                    // json response object
-                    // console.log(res);
                     renderTimeline(res);
-                    timelineTwoId="";
                 });
-        }
-        else if (timeline2 == "") {
-
-            // timelineOneId = $("#option1").data("id");
-
-            if (timeline1 == "U.S. States Admission"){
-                timelineOneId = 1;
-            }
-            else {
-                timelineOneId = 2;
-            }
-
-            console.log("timeline id: "+ timelineOneId);
-
-            $.get("/api/timeline/" + timelineOneId)
+        } else if (timeline2 == undefined) {
+            $.get("/api/timeline/" + timeline1)
                 .then(function (res) {
-
-                    //json response object
-                    // console.log(res);
-
                     renderTimeline(res);
-                    timelineOneId="";
-
                 });
-        }
-
-        else {
-
-            // set the IDs for each timeline
-            if (timeline1 == "U.S. States Admission"){
-                timelineOneId = 1;
-            }
-            else {
-                timelineOneId = 2;
-            }
-    
-            if (timeline2 == "U.S. States Admission"){
-                timelineTwoId = 1;
-            }
-            else {
-                timelineTwoId = 2;
-            }
-    
-            console.log("your 2 selected timelines are " + timeline1 + " & " + timeline2);
-            console.log("The Ids are " + timelineOneId + " & " + timelineTwoId);
-
+        } else {
             timelines = {
-                timeline1: timelineOneId,
-                timeline2: timelineTwoId
-            }
-
+                timeline1: timeline1,
+                timeline2: timeline2
+            };
             $.post("/api/combined", timelines)
                 .then(function (res) {
-
-                    console.log(res);
                     // render timeline with a function
-                    renderTwoTimelines(res, timelineOneId, timelineTwoId);
+                    renderTwoTimelines(res, timeline1, timeline2);
                 });
+        };
 
-        }
-
-        // FUNCTION TO RENDER A SINGLE TIMELINE
         var renderTimeline = function (data) {
-
             // empty the div
             $(".timeline__items").empty();
-
             // for each item in data response
             data.forEach(element => {
                 var timelineItem = $("<div>");
@@ -254,7 +162,6 @@ $(document).ready(function () {
 
                 var timelineContent = $("<div>");
                 timelineContent.addClass("timeline__content");
-
 
                 var h2 = $("<h2>")
                 h2.text(element.event_name);
@@ -267,8 +174,8 @@ $(document).ready(function () {
                 var strongStart = $("<strong>");
                 var startText = element.start_date;
                 var startDate = startText.split("T");
-                strongStart.text( "Start: ");
-                start.text(startDate[0]+ " || ");
+                strongStart.text("Start: ");
+                start.text(startDate[0] + " || ");
                 start.prepend(strongStart);
                 timelineContent.append(start);
 
@@ -287,40 +194,28 @@ $(document).ready(function () {
                 var desc = $("<p>");
                 desc.text(element.event_description);
                 timelineContent.append(desc);
-
                 // append the timeline content div to the timeline item
                 timelineItem.append(timelineContent);
-
                 $(".timeline__items").append(timelineItem);
-
-
             }); // end forEach
-
             // timeline script to initiate timeline
             $('.timeline').timeline({
                 verticalStartPosition: 'left',
                 verticalTrigger: '150px',
             });
-
         };
 
-        // FUNCTION TO RENDER 2 TIMELINES
         var renderTwoTimelines = function (data, t1, t2) {
-            console.log("You want to render 2 timelines with Ids:"+ t1 + " & "+t2);
-
             data.forEach(element => {
                 var timelineItem = $("<div>");
                 timelineItem.addClass("timeline__item");
-                
+
                 var timelineContent = $("<div>");
                 timelineContent.addClass("timeline__content");
-                
-                if (element.TimelineId == t1){
-                    console.log(element.TimelineId);
+
+                if (element.TimelineId == t1) {
                     timelineContent.addClass("timeline1");
-                }
-                else {
-                    console.log(element.TimelineId);
+                } else {
                     timelineContent.addClass("timeline2");
                 }
 
@@ -335,8 +230,8 @@ $(document).ready(function () {
                 var strongStart = $("<strong>");
                 var startText = element.start_date;
                 var startDate = startText.split("T");
-                strongStart.text( "Start: ");
-                start.text(startDate[0]+ " || ");
+                strongStart.text("Start: ");
+                start.text(startDate[0] + " || ");
                 start.prepend(strongStart);
                 timelineContent.append(start);
 
@@ -355,14 +250,10 @@ $(document).ready(function () {
                 var desc = $("<p>");
                 desc.text(element.event_description);
                 timelineContent.append(desc);
-
                 // append the timeline content div to the timeline item
                 timelineItem.append(timelineContent);
-
                 // append each timeline item to the timeline__items div
                 $(".timeline__items").append(timelineItem);
-
-                
             });
 
             // timeline script to initiate timeline
@@ -371,11 +262,5 @@ $(document).ready(function () {
                 verticalTrigger: '150px',
             });
         };
-
-
-
     }); /* end on click */
-
-
-
 }); // end document on ready

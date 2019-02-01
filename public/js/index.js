@@ -119,9 +119,14 @@ $(document).ready(function () {
 
     // clear button on click function
     $(document).on("click", ".clearButton", function () {
+        $("#option1").data("id", undefined);
+        $("#option2").data("id", undefined);
         $("#option1").empty();
         $("#option2").empty();
     }); // end clear button on click function
+
+
+
     // when clicking on go, will grab the values of selected timelines, will do
     // an api call to retrieve both timelines
     $(document).on("click", ".goButton", function () {

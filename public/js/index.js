@@ -119,10 +119,11 @@ $(document).ready(function () {
 
     // clear button on click function
     $(document).on("click", ".clearButton", function () {
-        $("#option1").removeAttr("data-id");
-        $("#option2").removeAttr("data-id");
+        // $("#option1").removeAttr("data-id");
+        // $("#option2").removeAttr("data-id");
         $("#option1").empty();
         $("#option2").empty();
+        location.reload();
     }); // end clear button on click function
 
 
@@ -130,8 +131,13 @@ $(document).ready(function () {
     // when clicking on go, will grab the values of selected timelines, will do
     // an api call to retrieve both timelines
     $(document).on("click", ".goButton", function () {
-        var timeline1 = $("#option1").data("id");
-        var timeline2 = $("#option2").data("id");
+        // var timeline1 = undefined;
+        // var timeline2 = undefined;
+
+        timeline1 = $("#option1").data("id");
+        timeline2 = $("#option2").data("id");
+
+        console.log(timeline1, timeline2);
 
         if (timeline1 == undefined && timeline2 == undefined) {
             alert("please select at least one timeline");

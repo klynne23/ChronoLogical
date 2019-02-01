@@ -9,7 +9,6 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
 
-    // Adds a hasMany association to Timelines
     Category.associate = function (models) {
         Category.hasMany(models.Timeline, {
             onDelete: "CASCADE"

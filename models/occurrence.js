@@ -21,7 +21,6 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
 
-    // Add a belongsTo association to Timeline here
     Occurrence.associate = function (models) {
         Occurrence.belongsTo(models.Timeline, {
             onDelete: "CASCADE",

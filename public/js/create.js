@@ -95,6 +95,7 @@ $(document).ready(function () {
 
             $.get("api/timeline/" + selectedTimeline, function (data) {
                 // console.log(selectedTimeline); 
+                $(".event-select").empty();
                 var eventDrop = $("#event-select"); //chooses the selector to stick events in the drop down
                 // console.log(data);
                 for (var i = 0; i < data.length; i++) {

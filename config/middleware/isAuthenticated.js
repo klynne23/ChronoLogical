@@ -4,5 +4,6 @@ module.exports = function(req, res, next) {
   }
 
   // this route will redirect to the route that will display our signup page
+  
   return res.redirect("/index");
 };

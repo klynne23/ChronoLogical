@@ -8,7 +8,6 @@ $(document).ready(function () {
     var startInput = $("#startDate");
     var endInput = $("#endDate");
 
-
     /////////////////////
     ///// TIMELINES /////
     ///////////////////// 
@@ -19,7 +18,6 @@ $(document).ready(function () {
         var newTimeline = {
             title: $("#timelineTitle").val().trim(),
             CategoryId: $("#timelineCategory").val(),
-            UserId: 1
         };
         console.log(newTimeline)
 
@@ -28,7 +26,6 @@ $(document).ready(function () {
             data: newTimeline
         }).then(
             function () {
-                // console.log(newTimeline);
                 location.reload();
             }
         );
@@ -39,27 +36,20 @@ $(document).ready(function () {
     ///////////////////// 
 
     //function to get the timeline data from the api
-
     var selectedTimeline;
 
+    // This function populates a dropdown box with the user's timelines
     function getTimelines() {
-        // will need to change UserId to whatever the Id of the user who is logged in is
-        var UserId = 1;
-        $.get("/api/timeline/user/" + UserId, function (data) {
-            var timelineDrop = $(".timeline-select"); //to stick the timeline items in the dropdown
-            var timelines;
-            timelines = data;
-            // console.log(timelines);
-            for (var i = 0; i < timelines.length; i++) {
+        $.get("/api/timeline/user/", function (data) {
+            var timelineDrop = $(".timeline-select");
+            for (var i = 0; i < data.length; i++) {
                 $("<option />", {
-                    value: timelines[i].id,
-                    text: timelines[i].title
+                    value: data[i].id,
+                    text: data[i].title
                 }).appendTo(timelineDrop);
-                // console.log(timelines[i].title)
             }
         })
     }
-
 
     getTimelines();
 
@@ -67,27 +57,25 @@ $(document).ready(function () {
     $("#eventForm").on("submit", function (event) {
         event.preventDefault();
         var newEvent = {
-            TimelineId: $("#timeline").val(),
+            TimelineId: $("#tl-create-event option:selected").val(),
             event_name: eventTitleInput.val().trim(),
             event_description: descriptionInput.val().trim(),
             start_date: startInput.val().trim(),
             end_date: endInput.val().trim()
         };
-        console.log(newEvent);
+
         $.ajax("/api/timeline/event", {
             method: "POST",
             data: newEvent
         }).then(
             function () {
-                console.log(newEvent);
-                // location.reload();
+                location.reload();
             }
         );
     });
 
     //function to get events for the drop down
     function getEvents() {
-
         $("#timelineEditForm").on("submit", function () {
             event.preventDefault();
             selectedTimeline = $("#timeline-event").val();
@@ -110,41 +98,30 @@ $(document).ready(function () {
                     var editEvent = {
                         id: $("#event-select").val()
                     }
-                   var eventArray = (Object.values(editEvent))
+                    var eventArray = (Object.values(editEvent))
                     $.get("api/timeline/event/" + eventArray, function (data) {
                         console.log(data);
-                        for(var i = 0; i<data.length; i++){
+                        for (var i = 0; i < data.length; i++) {
                             $("#event-title").val(data[i].event_name);
                             $("#event-description").val(data[i].event_description);
                             $(".start-date").val(data[i].start_date);
                             $(".end-date").val(data[i].end_date);
-
-                        }
-                    })
-
-
-                    //display details that go with the event name
-                })
-
-            })
-        })
-    }
+                        };
+                    });
+                });
+            });
+        });
+    };
 
     getEvents();
 
-    //RENDER EVENT DETAILS
-
-
-
-    // editing the events
-    $(document).on("click", ".editEvent", editEvent);
     // edit an event function
     function editEvent() {
         var currentEdit = $(this).text();
         $(this).children("input.editEvent").val(currentEdit);
     } // end editEvent
 
-    $(document).on("click", ".submitEvent", submitEvent);
+    $(document).on("click", ".editEvent", editEvent);
 
     // submit an event function 
     function submitEvent() {
@@ -155,37 +132,26 @@ $(document).ready(function () {
             start_date: $("input.start-date").val(),
             end_date: $(".end-date").val()
         }
-
         // make put request to server
         $.ajax({
             method: "PUT",
             url: "/api/timeline/event",
             data: event
         }).then(console.log("you updated the event"));
+    }; // end submitEvent
 
+    $(document).on("click", ".submitEvent", submitEvent);
 
-    } // end submitEvent
-
-
-    $(document).on("click", ".deleteEvent", deleteEvent);
-
-    // delete a selected event
-    function deleteEvent(){
-        // var eventId = {
-        //     id: $("#event-select").val()
-        // }
-
+    // This function deletes a selected event
+    function deleteEvent() {
         var deleteId = $("#event-select").val();
-
-        console.log(deleteId);
-        // $.delete("/api/timeline/event/" + eventId).then(data);
 
         $.ajax({
             method: "DELETE",
             url: "api/timeline/event/" + deleteId
         }).then(console.log("you deleted the event"));
+    }; // end deleteEvent
 
-    } // end deleteEvent
+    $(document).on("click", ".deleteEvent", deleteEvent);
 
-
-})
+});

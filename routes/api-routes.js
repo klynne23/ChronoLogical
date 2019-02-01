@@ -60,19 +60,17 @@ module.exports = function (app) {
         db.Timeline.create({
             title: req.body.title,
             CategoryId: req.body.CategoryId,
-            UserId: req.body.UserId
+            UserId: req.user.id
         }).then(function (results) {
             res.json(results);
         });
     });
 
-
     // GET route for retrieving all TIMELINES associated with a SINGLE USER
-    app.get("/api/timeline/user/:UserId", function (req, res) {
-        console.log(req.params.UserId)
+    app.get("/api/timeline/user/", function (req, res) {
         db.Timeline.findAll({
             where: {
-                UserId: req.params.UserId
+                UserId: req.user.id
             }
         }).then(function (results) {
             res.json(results);
@@ -103,8 +101,6 @@ module.exports = function (app) {
             // });
         });
     });
-
-
 
     // POST route for retrieving all EVENTS associated with a TWO TIMELINES
     app.post("/api/combined", function (req, res) {
@@ -202,7 +198,6 @@ module.exports = function (app) {
         });
     });
 
-
     // handlebars home page route for filling the PUblic Timelines
     app.get("/", function (req, res) {
         db.Timeline.findAll({}).then(function (results) {
@@ -211,7 +206,4 @@ module.exports = function (app) {
         })
     });
 
-
-   
-    
 }; // End of module.exports
